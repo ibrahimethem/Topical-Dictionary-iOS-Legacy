@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DictionaryCell" rowHeight="126" id="9DL-q2-Rim" customClass="DictionaryTableViewCell" customModule="Topical_Dictionary" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9DL-q2-Rim" id="reb-Ge-lrH">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2E2-oL-9UB">
+                        <rect key="frame" x="10" y="7" width="394" height="112"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dictionary Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kG-0S-xwa">
+                                <rect key="frame" x="12" y="4" width="358" height="28"/>
+                                <color key="tintColor" systemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="aEF-K8-c7N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="20"/>
+                                <color key="textColor" name="DictionaryCellTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text=" temp temp temp temp" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubi-dE-vSc">
+                                <rect key="frame" x="12" y="36" width="370" height="43.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="4an-8k-VUd"/>
+                                </constraints>
+                                <color key="textColor" name="DictionaryCellTextColor"/>
+                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U76-sE-I6a">
+                                <rect key="frame" x="10" y="86.5" width="374" height="1"/>
+                                <color key="backgroundColor" name="DictionaryCellTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="oBY-1e-75q"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.00.0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKF-M9-xCm">
+                                <rect key="frame" x="12" y="91" width="67.5" height="18"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="13"/>
+                                <color key="textColor" name="DictionaryCellDateColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pv4-lh-nCn">
+                                <rect key="frame" x="370" y="6" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="p0e-gN-BEU"/>
+                                    <constraint firstAttribute="height" constant="20" id="xCX-Ls-I7I"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcP-iv-NMt">
+                                <rect key="frame" x="0.0" y="0.0" width="394" height="112"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.33073985819913904" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                        <constraints>
+                            <constraint firstItem="Pv4-lh-nCn" firstAttribute="top" secondItem="2E2-oL-9UB" secondAttribute="top" constant="6" id="00c-xJ-thJ"/>
+                            <constraint firstAttribute="trailing" secondItem="JcP-iv-NMt" secondAttribute="trailing" id="1do-D7-2re"/>
+                            <constraint firstAttribute="trailing" secondItem="U76-sE-I6a" secondAttribute="trailing" constant="10" id="1kF-fO-ACm"/>
+                            <constraint firstItem="4kG-0S-xwa" firstAttribute="top" secondItem="2E2-oL-9UB" secondAttribute="top" constant="4" id="5FA-xa-Flb"/>
+                            <constraint firstItem="JcP-iv-NMt" firstAttribute="top" secondItem="2E2-oL-9UB" secondAttribute="top" id="DM5-qD-ZS5"/>
+                            <constraint firstItem="yKF-M9-xCm" firstAttribute="top" secondItem="U76-sE-I6a" secondAttribute="bottom" constant="3.5" id="H6f-JP-CDq"/>
+                            <constraint firstAttribute="bottom" secondItem="yKF-M9-xCm" secondAttribute="bottom" constant="3" id="IVw-GZ-VB0"/>
+                            <constraint firstItem="JcP-iv-NMt" firstAttribute="leading" secondItem="2E2-oL-9UB" secondAttribute="leading" id="W7E-98-caN"/>
+                            <constraint firstItem="yKF-M9-xCm" firstAttribute="leading" secondItem="2E2-oL-9UB" secondAttribute="leading" constant="12" id="aWa-JT-wii"/>
+                            <constraint firstAttribute="bottom" secondItem="JcP-iv-NMt" secondAttribute="bottom" id="auo-UR-7v6"/>
+                            <constraint firstItem="ubi-dE-vSc" firstAttribute="top" secondItem="4kG-0S-xwa" secondAttribute="bottom" constant="4" id="juu-nO-zf4"/>
+                            <constraint firstItem="Pv4-lh-nCn" firstAttribute="leading" secondItem="4kG-0S-xwa" secondAttribute="trailing" id="lqZ-Zn-z89"/>
+                            <constraint firstItem="4kG-0S-xwa" firstAttribute="leading" secondItem="2E2-oL-9UB" secondAttribute="leading" constant="12" id="mas-W4-cK9"/>
+                            <constraint firstItem="U76-sE-I6a" firstAttribute="top" secondItem="ubi-dE-vSc" secondAttribute="bottom" constant="7" id="rgU-6B-s9b"/>
+                            <constraint firstAttribute="trailing" secondItem="ubi-dE-vSc" secondAttribute="trailing" constant="12" id="vkl-US-nEc"/>
+                            <constraint firstAttribute="trailing" secondItem="Pv4-lh-nCn" secondAttribute="trailing" constant="4" id="wQl-Ko-dhQ"/>
+                            <constraint firstItem="U76-sE-I6a" firstAttribute="leading" secondItem="2E2-oL-9UB" secondAttribute="leading" constant="10" id="wVr-bJ-AYD"/>
+                            <constraint firstItem="ubi-dE-vSc" firstAttribute="leading" secondItem="2E2-oL-9UB" secondAttribute="leading" constant="12" id="xsh-uF-acg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="2E2-oL-9UB" secondAttribute="bottom" constant="7" id="XDW-rV-vYR"/>
+                    <constraint firstItem="2E2-oL-9UB" firstAttribute="top" secondItem="reb-Ge-lrH" secondAttribute="top" constant="7" id="cJN-IZ-ZOb"/>
+                    <constraint firstAttribute="trailing" secondItem="2E2-oL-9UB" secondAttribute="trailing" constant="10" id="wrf-OM-OMQ"/>
+                    <constraint firstItem="2E2-oL-9UB" firstAttribute="leading" secondItem="reb-Ge-lrH" secondAttribute="leading" constant="10" id="xJm-9k-VDt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="container" destination="2E2-oL-9UB" id="zan-UG-Gsj"/>
+                <outlet property="dateLabel" destination="yKF-M9-xCm" id="mcM-hn-dQi"/>
+                <outlet property="dictionaryIcon" destination="Pv4-lh-nCn" id="MGt-m8-o0G"/>
+                <outlet property="explanation" destination="ubi-dE-vSc" id="tZ1-vL-4FS"/>
+                <outlet property="selectionView" destination="JcP-iv-NMt" id="hE4-pc-yfq"/>
+                <outlet property="title" destination="4kG-0S-xwa" id="hZa-VO-m7m"/>
+            </connections>
+            <point key="canvasLocation" x="100.00000000000001" y="41.517857142857139"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="DictionaryCellColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DictionaryCellDateColor">
+            <color red="0.33333333333333331" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DictionaryCellTextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

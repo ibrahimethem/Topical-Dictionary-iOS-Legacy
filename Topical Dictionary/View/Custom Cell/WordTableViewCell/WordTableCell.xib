@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Raleway-Medium.ttf">
+            <string>Raleway-Medium</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-MediumItalic.ttf">
+            <string>Roboto-MediumItalic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WordTableViewCell" rowHeight="115" id="M4k-Cg-TgC" customClass="WordTableViewCell" customModule="Topical_Dictionary" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="115"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M4k-Cg-TgC" id="SYV-oe-Trk">
+                <rect key="frame" x="0.0" y="0.0" width="471" height="115"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPP-wh-jkq">
+                        <rect key="frame" x="20" y="6" width="42.5" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="x13-hV-aKj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Raleway-Medium" family="Raleway" pointSize="18"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Part of Speach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdD-c3-92F">
+                        <rect key="frame" x="70.5" y="6" width="87" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="Q6D-rU-Siv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-MediumItalic" family="Roboto" pointSize="13"/>
+                        <color key="textColor" name="DictionaryCellDateColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeP-nX-Fl0">
+                        <rect key="frame" x="20" y="32" width="431" height="75"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="FKB-8W-RVv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="JeP-nX-Fl0" secondAttribute="trailing" constant="20" id="1fU-NA-ecW"/>
+                    <constraint firstAttribute="bottom" secondItem="JeP-nX-Fl0" secondAttribute="bottom" constant="8" id="2iv-vM-MA6"/>
+                    <constraint firstItem="AdD-c3-92F" firstAttribute="top" secondItem="SYV-oe-Trk" secondAttribute="top" constant="6" id="4up-mH-gKR"/>
+                    <constraint firstItem="JeP-nX-Fl0" firstAttribute="leading" secondItem="SYV-oe-Trk" secondAttribute="leading" constant="20" id="GVO-bh-vh6"/>
+                    <constraint firstItem="sPP-wh-jkq" firstAttribute="top" secondItem="SYV-oe-Trk" secondAttribute="top" constant="6" id="j6g-Mp-bSb"/>
+                    <constraint firstItem="JeP-nX-Fl0" firstAttribute="top" secondItem="sPP-wh-jkq" secondAttribute="bottom" constant="4" id="oiN-dV-XBA"/>
+                    <constraint firstItem="sPP-wh-jkq" firstAttribute="leading" secondItem="SYV-oe-Trk" secondAttribute="leading" constant="20" id="qtu-1H-Svr"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AdD-c3-92F" secondAttribute="trailing" constant="30" id="rTD-eS-JZw"/>
+                    <constraint firstItem="AdD-c3-92F" firstAttribute="leading" secondItem="sPP-wh-jkq" secondAttribute="trailing" constant="8" id="sgq-VQ-LAz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+            <connections>
+                <outlet property="explanationLabel" destination="JeP-nX-Fl0" id="mhI-f6-4kR"/>
+                <outlet property="partOfSpeachLabel" destination="AdD-c3-92F" id="Jos-bV-eI9"/>
+                <outlet property="wordLabel" destination="sPP-wh-jkq" id="a0M-rs-cCC"/>
+            </connections>
+            <point key="canvasLocation" x="455.79710144927537" y="237.38839285714283"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="DictionaryCellDateColor">
+            <color red="0.33333333333333331" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
