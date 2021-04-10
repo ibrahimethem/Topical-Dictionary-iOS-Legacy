@@ -40,10 +40,9 @@ class DictionariesManager {
     
     
     func setListener() {
-        print("listener setted")
+        
         if let user = currentUser {
             db.collection("example").whereField("creater", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
-                print("listener trigerred")
                 AppDelegate.dictionaryLoadCount = AppDelegate.dictionaryLoadCount + (querySnapshot?.documents.count ?? 0)
                 if self.allDictionaries == nil {
                     self.loadDictionaries(querySnapshot, error)
@@ -79,6 +78,7 @@ class DictionariesManager {
                 }
             }
         }
+        
     }
     
     private func loadDictionaries(_ querySnapshot: QuerySnapshot?, _ error: Error?) {
