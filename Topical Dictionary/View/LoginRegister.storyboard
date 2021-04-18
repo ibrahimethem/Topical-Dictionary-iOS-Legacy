@@ -198,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="7by-RE-4zR">
-                                <rect key="frame" x="20" y="20" width="374" height="44"/>
+                                <rect key="frame" x="10" y="10" width="394" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkE-IF-sp9">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -211,13 +211,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue with Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezt-TG-rJn">
-                                        <rect key="frame" x="110" y="0.0" width="154" height="44"/>
+                                        <rect key="frame" x="120" y="0.0" width="154" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUK-YY-zNu">
-                                        <rect key="frame" x="330" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="350" y="0.0" width="44" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="OqE-uF-oKk"/>
@@ -229,7 +229,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-FP-cqn" userLabel="Login Register Stack">
-                                <rect key="frame" x="40" y="84" width="334" height="325"/>
+                                <rect key="frame" x="40" y="74" width="334" height="325"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RpJ-sn-YDU">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="37"/>
@@ -303,12 +303,12 @@
                         <viewLayoutGuide key="safeArea" id="jME-y0-UxW"/>
                         <color key="backgroundColor" name="HomeBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7by-RE-4zR" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" constant="20" id="F6l-Tb-pSI"/>
+                            <constraint firstItem="7by-RE-4zR" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" constant="10" id="F6l-Tb-pSI"/>
                             <constraint firstItem="6dT-FP-cqn" firstAttribute="top" secondItem="7by-RE-4zR" secondAttribute="bottom" constant="20" id="SxK-YO-St2"/>
                             <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="6dT-FP-cqn" secondAttribute="trailing" constant="40" id="TFQ-m3-91J"/>
-                            <constraint firstItem="7by-RE-4zR" firstAttribute="top" secondItem="jME-y0-UxW" secondAttribute="top" constant="20" id="Y3q-J5-eGC"/>
+                            <constraint firstItem="7by-RE-4zR" firstAttribute="top" secondItem="jME-y0-UxW" secondAttribute="top" constant="10" id="Y3q-J5-eGC"/>
                             <constraint firstItem="6dT-FP-cqn" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" constant="40" id="mNu-V6-Kzu"/>
-                            <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="7by-RE-4zR" secondAttribute="trailing" constant="20" id="qCl-Xn-CtX"/>
+                            <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="7by-RE-4zR" secondAttribute="trailing" constant="10" id="qCl-Xn-CtX"/>
                         </constraints>
                     </view>
                     <connections>

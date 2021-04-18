@@ -42,8 +42,7 @@ class DictionariesManager {
     func setListener() {
         
         if let user = currentUser {
-            db.collection("example").whereField("creater", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
-                AppDelegate.dictionaryLoadCount = AppDelegate.dictionaryLoadCount + (querySnapshot?.documents.count ?? 0)
+            let snapShotListener = db.collection("example").whereField("creater", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
                 if self.allDictionaries == nil {
                     self.loadDictionaries(querySnapshot, error)
                     return
@@ -77,8 +76,8 @@ class DictionariesManager {
                     self.delegate?.dictionariesDidChange(self)
                 }
             }
+            AppDelegate.snapShotListeners.append(snapShotListener)
         }
-        
     }
     
     private func loadDictionaries(_ querySnapshot: QuerySnapshot?, _ error: Error?) {

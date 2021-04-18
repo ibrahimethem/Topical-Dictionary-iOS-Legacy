@@ -27,7 +27,7 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, GADI
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+        let interstitial = GADInterstitial(adUnitID: APIKeys().adUnitID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
@@ -52,13 +52,16 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, GADI
     @objc func addButton() {
         performSegue(withIdentifier: "goToCreateDictionary", sender: self)
     }
-    //What should be done when Create Tab pressed
+    
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        // if middle tabbar button is pressed then return false and push the create dictionary view
         if viewController.isKind(of: EmptyButtonViewController.self) {
             performSegue(withIdentifier: "goToCreateDictionary", sender: interstitial)
             
             return false
         }
+        
         return true
     }
     

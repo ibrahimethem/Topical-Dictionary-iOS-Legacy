@@ -19,6 +19,8 @@ class AccountViewController: UIViewController {
         
         accountTableView.dataSource = self
         accountTableView.delegate = self
+        
+        accountTableView.backgroundColor = .clear
     }
     
     func logout() {
@@ -34,15 +36,20 @@ class AccountViewController: UIViewController {
 extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if section == 1 {
+            return 4
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
+        
+        switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath)
             
@@ -62,21 +69,24 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
-            
-            return cell
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "helpCell", for: indexPath)
-            
-            return cell
-        case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "termsCell", for: indexPath)
-            
-            return cell
-        case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell", for: indexPath)
-            
-            return cell
+            switch indexPath.row {
+            case 0:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "settingsCell", for: indexPath)
+                
+                return cell
+            case 1:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "helpCell", for: indexPath)
+                
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "termsCell", for: indexPath)
+                
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "aboutCell", for: indexPath)
+                
+                return cell
+            }
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "logoutCell", for: indexPath)
             
@@ -85,9 +95,9 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             return 75
-        } else if indexPath.row == 5 {
+        } else if indexPath.section == 1 {
             return 60
         } else {
             return 55
@@ -95,19 +105,12 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 28
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
+        return 20
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 5:
+        if tableView.cellForRow(at: indexPath)?.reuseIdentifier == "logoutCell" {
             logout()
-        default:
-            print("\(tableView.cellForRow(at: indexPath)?.textLabel?.text ?? "no cell") is selected.")
         }
     }
     

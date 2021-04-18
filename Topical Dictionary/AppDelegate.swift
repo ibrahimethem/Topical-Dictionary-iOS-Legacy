@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    static var dictionaryLoadCount = 0
+    static var snapShotListeners: [ListenerRegistration] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -56,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 self.window?.rootViewController = mainStoryBoard.instantiateInitialViewController()
             } else {
+                for listener in AppDelegate.snapShotListeners {
+                    listener.remove()
+                }
+                AppDelegate.snapShotListeners = []
+                
                 let loginManager = LoginManager()
                 loginManager.logOut()
                 
