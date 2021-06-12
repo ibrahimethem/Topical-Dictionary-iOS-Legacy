@@ -24,15 +24,19 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     @IBOutlet var addDictionaryTable: UITableView!
     @IBOutlet var toolBar: UIToolbar!
     
-    var headCell = HeadTableViewCell()
+    //var headCell = HeadTableViewCell()
     
     var searchResultCells: [ResultTableViewCell] = [ResultTableViewCell]()
     var searchResults: [WordResult] = [WordResult]()
-    //var searchedWord: String = ""
     var isWordSearching: Bool = false
     var isWordExist: Bool = true
     
     var addedWords: [String: WordResult] = [String: WordResult]()
+    
+    
+    var searchedWord = WordData()
+    var wordManager = WordManager()
+    var thisDictionary = DictionaryModel()
     
     
     override func viewDidLoad() {
@@ -83,9 +87,7 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     }
     
     //MARK: - Searching with wordsAPI
-    var searchedWord = WordData()
-    var wordManager = WordManager()
-    var thisDictionary = DictionaryModel()
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchedWord = WordData()
@@ -102,10 +104,10 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     
     
     //MARK: TapGesture
+    
     @objc func somewhereTapped() {
         inputAccessoryView?.isHidden = true
-        headCell.titleTextField.endEditing(true)
-        headCell.explanationTextView.endEditing(true)
+        view.endEditing(true)
     }
     
     //MARK: - Saving the dictionary to FireBase
@@ -191,12 +193,13 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
             // automaticaly fill the textField and textView with didSet method
             cell.topic = thisDictionary.topic ?? ""
             cell.explanation = thisDictionary.info ?? ""
+            cell.updateText()
             
             cell.explanationTextView.isScrollEnabled = false
-            cell.tableView = tableView // WHY?
+            //cell.tableView = tableView // WHY?
             
-            headCell = cell
-            headCell.delegate = self
+            //headCell = cell
+            cell.delegate = self
             
             return cell
             
@@ -204,7 +207,7 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCells", for: indexPath) as! ResultTableViewCell
             // if results array is nill this part will not executed because row number is ZERO for section ONE
-            cell.wordResult = searchedWord.results![indexPath.row]
+            cell.set(wordResult: searchedWord.results![indexPath.row])
             
             return cell
             

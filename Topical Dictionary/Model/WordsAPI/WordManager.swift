@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-struct WordManager {
+class WordManager {
     
-    var delegate: WordManagerDelegate?
+    weak var delegate: WordManagerDelegate?
     
     func fetchData(word: String) {
         guard let encodedWord = word.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
@@ -35,7 +35,7 @@ struct WordManager {
         let session = URLSession.shared
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
+        let dataTask = session.dataTask(with: request) { [unowned self] (data, response, error) in
             if error != nil {
                 print(error!)
             }
@@ -72,6 +72,6 @@ struct WordManager {
     
 }
 
-protocol WordManagerDelegate {
+protocol WordManagerDelegate: AnyObject {
     func didSearchWord(_ wordManager: WordManager, word: WordData)
 }

@@ -13,7 +13,7 @@ class HeadTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegat
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var explanationTextView: UITextView!
     let placeholder = "Write the explanation of your dictionary here"
-    var tableView: UITableView!
+    //var tableView: UITableView!
     
     var initialTitleText = ""
     var initialExplanationText = ""
@@ -21,23 +21,24 @@ class HeadTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegat
     let placeholderFont = UIFont.init(name: "Roboto-LightItalic", size: 14.0)!
     let explanationFont = UIFont.init(name: "Roboto-Light", size: 14.0)!
     
-    var delegate: HeadCellDelegate?
+    weak var delegate: HeadCellDelegate?
     
-    var topic: String? {
-        didSet {
-            titleTextField.text = topic
-        }
-    }
+    var topic: String?
+    var explanation: String?
     
-    var explanation: String? {
-        didSet {
-            if explanation == "" {
+    func updateText() {
+        if let exp = explanation {
+            if exp == "" {
                 explanationTextView.font = placeholderFont
                 explanationTextView.text = placeholder
             } else {
                 explanationTextView.font = explanationFont
-                explanationTextView.text = explanation
+                explanationTextView.text = exp
             }
+        }
+        
+        if let topic = topic {
+            titleTextField.text = topic
         }
     }
     
@@ -94,7 +95,7 @@ class HeadTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegat
     
 }
 
-protocol HeadCellDelegate {
+protocol HeadCellDelegate: AnyObject {
     func titleDidChage(_ withText: String)
     func explanationDidChange(_ withText: String)
 }

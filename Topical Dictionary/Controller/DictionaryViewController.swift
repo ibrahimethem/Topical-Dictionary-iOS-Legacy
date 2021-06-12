@@ -12,14 +12,16 @@ import FirebaseFirestore
 
 class DictionaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate {
 
+    deinit {
+        print("it is deinitialized")
+    }
+    
     @IBOutlet var wordsTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
-    var selectedDictionary = DictionaryModel()
-    var words = [WordModel]()
-    var searchedWord = WordData()
-    var wordManager = WordManager()
-    var headCell = HeadTableViewCell()
+    lazy var selectedDictionary = DictionaryModel()
+    lazy var searchedWord = WordData()
+    lazy var wordManager = WordManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,17 +177,19 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.explanation = selectedDictionary.info ?? ""
             
             cell.explanationTextView.isScrollEnabled = false
-            cell.tableView = tableView
+            cell.updateText()
             
-            headCell = cell
-            headCell.delegate = self
+            //cell.tableView = tableView
+            //headCell = cell
+            
+            cell.delegate = self
             
             return cell
             
         } else if indexPath.section == 1 {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCells") as! ResultTableViewCell
-            cell.wordResult = searchedWord.results![indexPath.row]
+            cell.set(wordResult: searchedWord.results![indexPath.row])
             
             return cell
             
@@ -210,7 +214,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         } else if section == 2 {
             let headerCell = UITableViewHeaderFooterView()
             headerCell.tintColor = UIColor(named: "HeaderColor")
-            //headerCell.backgroundColor = UIColor(named: "HeaderColor")
             headerCell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 18)
             headerCell.textLabel?.text = "Words"
             

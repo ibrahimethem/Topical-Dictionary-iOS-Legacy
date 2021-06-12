@@ -43,6 +43,10 @@ class DictionariesManager {
         
         if let user = currentUser {
             let snapShotListener = db.collection("example").whereField("creater", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
+                if let err = error {
+                    self.delegate?.didFailLoadDictionaries(self, error: err)
+                    return
+                }
                 if self.allDictionaries == nil {
                     self.loadDictionaries(querySnapshot, error)
                     return

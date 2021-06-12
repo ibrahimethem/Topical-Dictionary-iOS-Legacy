@@ -12,6 +12,7 @@ struct WordData: Decodable {
     var word: String?
     var results: [WordResult]?
 }
+
 struct WordResult: Decodable {
     var definition: String?
     var partOfSpeech: String?

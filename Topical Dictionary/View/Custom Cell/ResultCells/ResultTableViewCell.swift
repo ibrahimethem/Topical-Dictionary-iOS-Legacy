@@ -12,18 +12,16 @@ class ResultTableViewCell: UITableViewCell {
 
     @IBOutlet var wordTextView: UITextView!
     
-    var wordResult: WordResult! {
-        didSet {
-            var resultText = wordResult.definition ?? ""
-            if wordResult.partOfSpeech != nil {
-                resultText = "\(resultText) (\(wordResult.partOfSpeech!))"
-            }
-            if wordResult.examples != nil {
-                resultText = "\(resultText)\n  eg. \(wordResult.examples![0])"
-            }
-            
-            wordTextView.text = resultText
+    func set(wordResult: WordResult) {
+        var resultText = wordResult.definition ?? ""
+        if wordResult.partOfSpeech != nil {
+            resultText = "\(resultText) (\(wordResult.partOfSpeech!))"
         }
+        if wordResult.examples != nil {
+            resultText = "\(resultText)\n  eg. \(wordResult.examples![0])"
+        }
+        
+        wordTextView.text = resultText
     }
     
     override func awakeFromNib() {
