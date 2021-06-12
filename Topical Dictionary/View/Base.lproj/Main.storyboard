@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSK-uU-aC4">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSK-uU-aC4">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -271,7 +271,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emailCell" textLabel="9gG-Y7-9vg" detailTextLabel="dNe-Ac-fch" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="iQF-zj-FNq">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="75"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iQF-zj-FNq" id="DBV-8u-9ns">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
@@ -296,14 +296,14 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="changepasswordCell" textLabel="Neu-ja-ssS" rowHeight="55" style="IBUITableViewCellStyleDefault" id="pbU-PQ-78Z">
-                                        <rect key="frame" x="20" y="130.5" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="124.5" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pbU-PQ-78Z" id="aeA-Gc-mCl">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Neu-ja-ssS">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="55"/>
+                                                    <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -314,14 +314,14 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="settingsCell" textLabel="QMZ-ig-JYn" rowHeight="55" style="IBUITableViewCellStyleDefault" id="tyY-3Y-H3y">
-                                        <rect key="frame" x="20" y="185.5" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="179.5" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tyY-3Y-H3y" id="NL0-ZC-HqK">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QMZ-ig-JYn">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="55"/>
+                                                    <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -332,14 +332,14 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="helpCell" textLabel="8W0-6G-xZT" rowHeight="55" style="IBUITableViewCellStyleDefault" id="IhV-JX-xVS">
-                                        <rect key="frame" x="20" y="240.5" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="234.5" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IhV-JX-xVS" id="fVQ-Pv-3aF">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Help &amp; Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8W0-6G-xZT">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="55"/>
+                                                    <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -350,14 +350,14 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="termsCell" textLabel="UHM-HE-NSN" rowHeight="55" style="IBUITableViewCellStyleDefault" id="irs-Aj-OMx">
-                                        <rect key="frame" x="20" y="295.5" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="289.5" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="irs-Aj-OMx" id="loi-Fq-fpd">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UHM-HE-NSN">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="55"/>
+                                                    <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -368,14 +368,14 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="aboutCell" textLabel="CBs-Q6-hj9" rowHeight="55" style="IBUITableViewCellStyleDefault" id="WEe-p4-OyJ">
-                                        <rect key="frame" x="20" y="350.5" width="374" height="55"/>
+                                        <rect key="frame" x="20" y="344.5" width="374" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WEe-p4-OyJ" id="8ra-lu-yd8">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CBs-Q6-hj9">
-                                                    <rect key="frame" x="20" y="0.0" width="315" height="55"/>
+                                                    <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                     <nil key="textColor"/>
@@ -386,7 +386,7 @@
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logoutCell" textLabel="VmB-VN-cEq" rowHeight="59" style="IBUITableViewCellStyleDefault" id="FpT-Tf-xXs">
-                                        <rect key="frame" x="20" y="405.5" width="374" height="59"/>
+                                        <rect key="frame" x="20" y="399.5" width="374" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FpT-Tf-xXs" id="XEd-pC-RnY">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="59"/>
