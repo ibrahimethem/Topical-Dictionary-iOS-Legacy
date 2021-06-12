@@ -36,10 +36,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedDictionary = DictionaryModel()
     var sectionZeroRowNumber = 0
     
-    var dictionaryManager = DictionariesManager()
+    lazy var dictionaryManager = DictionariesManager()
     
     // MARK: View Did Load
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,13 +15,7 @@ class DictionariesManager {
     
     var db: Firestore!
     
-    var delegate: DictionariesManagerDelegate? {
-        didSet {
-            if allDictionaries != nil {
-                sortDictionaries(by: sortingType)
-            }
-        }
-    }
+    weak var delegate: DictionariesManagerDelegate?
     var allDictionaries: [DictionaryModel]?
     var sortingType = SortingType.newToOld
     var isListingFav = false
@@ -141,9 +135,11 @@ class DictionariesManager {
         return favDictionaries
     }
     
+    
+    
 }
 
-protocol DictionariesManagerDelegate {
+protocol DictionariesManagerDelegate: AnyObject {
     func didLoadDictionaries(_ dictionaryManager: DictionariesManager, dictionaries: [DictionaryModel])
     func didFailLoadDictionaries(_ dictionaryManager: DictionariesManager, error: Error)
     func dictionariesDidChange(_ dictionaryManager: DictionariesManager)
