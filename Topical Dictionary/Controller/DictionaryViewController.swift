@@ -75,7 +75,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     private func setFavorite(isFavorite: Bool,_ sender: UIBarButtonItem) {
-        db.collection("example").document(selectedDictionary.id!).updateData(["isFavorite": isFavorite]) { error in
+        db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id!).updateData(["isFavorite": isFavorite]) { error in
             if error != nil {
                 print("Error in favorite: \(error!)")
             } else {
@@ -119,7 +119,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func titleDidChage(_ withText: String) {
-        db.collection("example").document(selectedDictionary.id!).updateData(["topic": withText]) { error in
+        db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id!).updateData(["topic": withText]) { error in
             if error != nil {
                 print("Error in text did change: \(error!)")
             } else {
@@ -131,7 +131,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func explanationDidChange(_ withText: String) {
-        db.collection("example").document(selectedDictionary.id!).updateData(["info": withText]) { error in
+        db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id!).updateData(["info": withText]) { error in
             if error != nil {
                 print("Error in explanation did change: \(error!)")
             } else {
@@ -251,19 +251,16 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             wordsTableView.reloadData()
             
             if selectedDictionary.words != nil {
-                db.collection("example").document(selectedDictionary.id ?? "").updateData([
-                    "words": selectedDictionary.asDictionary()["words"]!
-                ]) { err in
-                    print("asd")
-                    if err == nil {
-                        print("word added")
-                        DispatchQueue.main.async {
-                            self.searchedWord = .init()
-                            self.wordsTableView.reloadData()
-                        }
-                    } else {
-                        print("Error while adding word: \(err!)")
+                
+                do {
+                    try db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id ?? "").setData(from: selectedDictionary)
+                    print("Dictionary updated")
+                    DispatchQueue.main.async {
+                        self.searchedWord = .init()
+                        self.wordsTableView.reloadData()
                     }
+                } catch {
+                    print("Error occured while updating the dictionary \(error as NSError)")
                 }
             }
         }

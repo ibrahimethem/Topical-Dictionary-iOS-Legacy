@@ -61,7 +61,7 @@ class WordsViewController: UIViewController, UITableViewDataSource, UITableViewD
             return
         }
         
-        db.collection("example").whereField("creater", isEqualTo: userID).getDocuments { (querySnapshot, err) in
+        db.collection(Keys.dictionaryCollectionID.rawValue).whereField("creater", isEqualTo: userID).getDocuments { (querySnapshot, err) in
             if err != nil {
                 print("Error getting documents for words: \(err!)")
             } else {

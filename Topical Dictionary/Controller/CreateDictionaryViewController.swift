@@ -115,20 +115,15 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     
     func doneAction() {
         self.view.endEditing(true)
-        
         thisDictionary.creator = Auth.auth().currentUser?.uid
-        let docData = thisDictionary.asDictionary()
-        print(thisDictionary.asDictionary())
         
-        var ref: DocumentReference? = nil
-        ref = db.collection("example").addDocument(data: docData, completion: { (err) in
-            if err != nil {
-                print("Error while adding document: \(err!)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-                self.dismiss(animated: true, completion: .none)
-            }
-        })
+        do {
+            let ref = try db.collection(Keys.dictionaryCollectionID.rawValue).addDocument(from: thisDictionary)
+            print("Dictionary added with id: \(ref.documentID)")
+            self.dismiss(animated: true, completion: nil)
+        } catch {
+            print("Error occured while adding the dictionary \(error as NSError)")
+        }
     }
     
     
