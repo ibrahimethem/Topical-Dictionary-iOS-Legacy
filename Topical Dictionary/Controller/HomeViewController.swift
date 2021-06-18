@@ -129,13 +129,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func favorite(_ sender: UIBarButtonItem) {
         if isFav {
             isFav = false
-            favButton.tintColor = UIColor.white
             favButton.image = UIImage(named: "notFavoriteButton")
             setNavigationTitle()
             mainTableView.reloadSections(.init(arrayLiteral: 1), with: .fade)
         } else {
             isFav = true
-            favButton.tintColor = UIColor(red: 253/255, green: 242/255, blue: 130/255, alpha: 1.0)
             favButton.image = UIImage(named: "favoriteButton")
             setNavigationTitle()
             mainTableView.reloadSections(.init(arrayLiteral: 1), with: .fade)

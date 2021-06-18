@@ -36,7 +36,7 @@ class DictionariesManager {
     func setListener() {
         
         if let user = currentUser {
-            let snapShotListener = db.collection("example").whereField("creater", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
+            let snapShotListener = db.collection(Keys.dictionaryCollectionID.rawValue).whereField("creator", isEqualTo: user.uid).addSnapshotListener { (querySnapshot, error) in
                 if let err = error {
                     self.delegate?.didFailLoadDictionaries(self, error: err)
                     return

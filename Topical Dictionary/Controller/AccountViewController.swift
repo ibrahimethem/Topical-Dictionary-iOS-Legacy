@@ -20,7 +20,7 @@ class AccountViewController: UIViewController {
         accountTableView.dataSource = self
         accountTableView.delegate = self
         
-        accountTableView.backgroundColor = .clear
+        //accountTableView.backgroundColor = .clear
     }
     
     func logout() {

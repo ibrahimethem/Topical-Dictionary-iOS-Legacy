@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSK-uU-aC4">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -49,6 +49,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="IKj-hl-eJd"/>
                                                     <constraint firstAttribute="width" constant="40" id="ubB-PC-piM"/>
                                                 </constraints>
+                                                <color key="tintColor" name="tabbarItemColor"/>
                                                 <state key="normal" image="cancelButton"/>
                                                 <connections>
                                                     <action selector="cancel:" destination="739-mm-8Pe" eventType="touchUpInside" id="Fwq-eX-g9F"/>
@@ -56,8 +57,9 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8c-oi-wiT">
                                                 <rect key="frame" x="99" y="0.0" width="102" height="40"/>
+                                                <color key="tintColor" name="tabbarItemColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="tabbarItemColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFr-Fl-o5H">
@@ -66,6 +68,7 @@
                                                     <constraint firstAttribute="width" constant="40" id="3De-No-GHo"/>
                                                     <constraint firstAttribute="height" constant="40" id="H5k-YX-v9k"/>
                                                 </constraints>
+                                                <color key="tintColor" name="tabbarItemColor"/>
                                                 <state key="normal" image="doneButton"/>
                                                 <connections>
                                                     <action selector="done:" destination="739-mm-8Pe" eventType="touchUpInside" id="Q0Q-Og-pbE"/>
@@ -79,7 +82,7 @@
                                         <color key="backgroundColor" name="PickerViewColor"/>
                                     </pickerView>
                                 </subviews>
-                                <color key="backgroundColor" name="tabbarColor"/>
+                                <color key="backgroundColor" name="HomeBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="3n8-0L-YpW" firstAttribute="leading" secondItem="0iE-Rp-424" secondAttribute="leading" id="1WD-8L-C1H"/>
                                     <constraint firstAttribute="bottom" secondItem="TSq-Vs-tX9" secondAttribute="bottom" constant="4" id="4jR-wF-VHw"/>
@@ -137,20 +140,17 @@
                     <navigationItem key="navigationItem" title="Dictionaries" leftItemsSupplementBackButton="YES" id="x0s-Js-uf0">
                         <barButtonItem key="backBarButtonItem" title=" " id="Fxn-ew-3Iu"/>
                         <barButtonItem key="leftBarButtonItem" image="moreButton" id="JSl-JP-hjQ">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="edit:" destination="Sch-7S-ybo" id="vr1-01-IrV"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="sortButton" id="r7z-Te-gmM">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="sortButton:" destination="Sch-7S-ybo" id="frE-te-bvh"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="notFavoriteButton" id="4x8-P8-Dfe">
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="favorite:" destination="Sch-7S-ybo" id="sm7-a8-rxB"/>
                                 </connections>
@@ -176,9 +176,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sNV-C4-TIf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="sNV-C4-TIf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                <color key="backgroundColor" name="GeneralBackgroundColor"/>
+                                <color key="backgroundColor" name="HomeBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="67k-fx-N97"/>
@@ -268,7 +268,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Xbp-Hi-7Ry">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="HomeBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emailCell" textLabel="9gG-Y7-9vg" detailTextLabel="dNe-Ac-fch" rowHeight="75" style="IBUITableViewCellStyleSubtitle" id="iQF-zj-FNq">
                                         <rect key="frame" x="20" y="49.5" width="374" height="75"/>
@@ -356,7 +356,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="344.5" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Terms &amp; Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UHM-HE-NSN">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UHM-HE-NSN">
                                                     <rect key="frame" x="20" y="0.0" width="316.5" height="55"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
@@ -408,7 +408,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hp2-BN-oGN"/>
-                        <color key="backgroundColor" name="GeneralBackgroundColor"/>
+                        <color key="backgroundColor" name="HomeBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Hp2-BN-oGN" firstAttribute="bottom" secondItem="Xbp-Hi-7Ry" secondAttribute="bottom" id="42M-CK-u2f"/>
                             <constraint firstItem="Xbp-Hi-7Ry" firstAttribute="top" secondItem="Hp2-BN-oGN" secondAttribute="top" id="4Yd-Sh-67A"/>
@@ -423,7 +423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpN-tL-hdI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2057.971014492754" y="623.4375"/>
+            <point key="canvasLocation" x="2219" y="623"/>
         </scene>
         <!--Empty Button View Controller-->
         <scene sceneID="k24-Wr-sAL">
@@ -441,6 +441,7 @@
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="550-nr-v2G">
                                 <rect key="frame" x="188.5" y="149.5" width="37" height="37"/>
+                                <color key="color" name="DictionaryCellDateColor"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zgr-Ud-nw6"/>
@@ -470,9 +471,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="centered" id="fmP-aO-TMt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="tabbarItemColor"/>
                         <color key="barTintColor" name="tabbarColor"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="tabbarItemColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="K10-Iu-1i5" kind="presentation" identifier="goToCreateDictionary" modalPresentationStyle="pageSheet" id="1U5-wH-wH0"/>
@@ -492,17 +493,11 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eO3-BM-CkW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="words_unselected" selectedImage="words" id="lNv-zf-5FN"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Iy8-rF-hEy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Iy8-rF-hEy">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" name="tabbarItemColor"/>
                         <color key="barTintColor" name="tabbarColor"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -519,10 +514,17 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8fm-jn-s9T" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="Account-Unselected" selectedImage="account" id="4wQ-dx-MXR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="MxM-fK-g6k">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="MxM-fK-g6k">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="tabbarColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" name="tabbarItemColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" name="tabbarItemColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -549,17 +551,23 @@
         <namedColor name="DictionaryCellColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="DictionaryCellDateColor">
+            <color red="0.33333333333333331" green="0.30980392156862746" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="GeneralBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HomeBackgroundColor">
-            <color red="0.30199998617172241" green="0.28200000524520874" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PickerViewColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="tabbarColor">
-            <color red="0.23499999940395355" green="0.21199999749660492" blue="0.21199999749660492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabbarItemColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

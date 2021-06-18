@@ -12,15 +12,18 @@ import FirebaseFirestore
 
 class DictionaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate {
 
-    deinit {
-        print("it is deinitialized")
+    enum sections: Int {
+        case head = 0
+        case search = 1
+        case searchedWords = 2
+        case words = 3
     }
     
     @IBOutlet var wordsTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     lazy var selectedDictionary = DictionaryModel()
-    lazy var searchedWord = WordData()
+    var searchedWord: WordData?
     lazy var wordManager = WordManager()
     
     override func viewDidLoad() {
@@ -32,7 +35,6 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         wordsTableView.register(UINib(nibName: "SearchWordCell", bundle: .none), forCellReuseIdentifier: "SearchWordCell")
         wordsTableView.register(UINib(nibName: "HeadTableViewCell", bundle: .none), forCellReuseIdentifier: "HeadCell")
         wordsTableView.register(UINib(nibName: "ResultTableViewCell", bundle: .none), forCellReuseIdentifier: "ResultCells")
-        
         wordsTableView.register(UINib(nibName: "SearchWordCell", bundle: .none), forHeaderFooterViewReuseIdentifier: "SearchWordCell")
         
         // Set class as delegate and datasource of wordsTableView
@@ -71,13 +73,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             setFavorite(isFavorite: true, sender)
         }
-        sender.isEnabled = true
     }
     
     private func setFavorite(isFavorite: Bool,_ sender: UIBarButtonItem) {
         db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id!).updateData(["isFavorite": isFavorite]) { error in
             if error != nil {
                 print("Error in favorite: \(error!)")
+                sender.isEnabled = true
             } else {
                 DispatchQueue.main.async {
                     self.selectedDictionary.isFavorite = isFavorite
@@ -89,12 +91,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func setFavoriteImage(_ isFavorite: Bool,_ sender: UIBarButtonItem) {
         if isFavorite {
-            sender.tintColor = UIColor(red: 253/255, green: 242/255, blue: 130/255, alpha: 1.0)
+            //sender.tintColor = UIColor(red: 253/255, green: 242/255, blue: 130/255, alpha: 1.0)
             sender.image = UIImage(named: "favoriteButton")
         } else {
-            sender.tintColor = UIColor.white
+            //sender.tintColor = UIColor.white
             sender.image = UIImage(named: "notFavoriteButton")
         }
+        sender.isEnabled = true
     }
     
     
@@ -102,8 +105,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchedWord = WordData()
-        wordsTableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
+        searchedWord = nil
+        wordsTableView.reloadSections(IndexSet(arrayLiteral: sections.searchedWords.rawValue), with: .fade)
         wordManager.fetchData(word: searchBar.text ?? "")
     }
     
@@ -111,7 +114,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     func didSearchWord(_ wordManager: WordManager, word: WordData) {
         searchedWord = word
         DispatchQueue.main.async {
-            self.wordsTableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
+            self.wordsTableView.reloadSections(IndexSet(arrayLiteral: sections.searchedWords.rawValue), with: .fade)
         }
     }
     
@@ -146,12 +149,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - tableView functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
+        
+        switch section {
+        case sections.words.rawValue:
             selectedDictionary.words = selectedDictionary.words?.filter({ (savedWord) -> Bool in
                 savedWord.word != nil
             })
@@ -160,87 +164,90 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             })
             
             return selectedDictionary.words?.count ?? 0
-        } else if section == 1 {
-            return searchedWord.results?.count ?? 0
-        } else {
+        
+        case sections.searchedWords.rawValue:
+            return searchedWord?.results?.count ?? 0
+        
+        default:
             return 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            
+        switch indexPath.section {
+        case sections.head.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "HeadCell", for: indexPath) as! HeadTableViewCell
             
-            // automaticaly fill the textField and textView with didSet method
             cell.topic = selectedDictionary.topic ?? ""
             cell.explanation = selectedDictionary.info ?? ""
             
             cell.explanationTextView.isScrollEnabled = false
             cell.updateText()
             
-            //cell.tableView = tableView
-            //headCell = cell
-            
             cell.delegate = self
             
             return cell
-            
-        } else if indexPath.section == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCells") as! ResultTableViewCell
-            cell.set(wordResult: searchedWord.results![indexPath.row])
+        
+        case sections.search.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWordCell") as! SearchWordCell
+            cell.seachBar.delegate = self
             
             return cell
             
-        } else {
+        case sections.searchedWords.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCells") as! ResultTableViewCell
+            cell.set(wordResult: searchedWord!.results![indexPath.row])
             
+            return cell
+        
+        case sections.words.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WordTableViewCell", for: indexPath) as! WordTableViewCell
             
             cell.wordModel = self.selectedDictionary.words![indexPath.row]
             
             return cell
+            
+        default:
+            return UITableViewCell()
         }
     }
     
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 1 {
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: "SearchWordCell") as! SearchWordCell
-            headerCell.seachBar.delegate = self
-            
-            return headerCell.contentView
-            
-        } else if section == 2 {
-            let headerCell = UITableViewHeaderFooterView()
-            headerCell.tintColor = UIColor(named: "HeaderColor")
-            headerCell.textLabel?.font = UIFont(name: "Roboto-Regular", size: 18)
-            headerCell.textLabel?.text = "Words"
-            
-            return headerCell
-        }
-        
-        else {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case sections.search.rawValue:
+            return "Add new word"
+        case sections.words.rawValue:
+            return "Words"
+        default:
             return nil
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 1 {
-            return 60
-        } else if section == 2 {
-            return 36
-        } else {
-            return 0
+        if section == sections.searchedWords.rawValue {
+            return CGFloat.leastNormalMagnitude
         }
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == sections.searchedWords.rawValue {
+            if searchedWord?.results?.count ?? 0 == 0 {
+                return CGFloat.leastNormalMagnitude
+            }
+            return 20
+        }
+        return 20
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == sections.searchedWords.rawValue {
             self.wordsTableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
             var newWord = WordModel()
-            newWord.word = searchedWord.word
-            let result = searchedWord.results?[indexPath.row]
+            guard searchedWord != nil else { return }
+            newWord.word = searchedWord!.word
+            let result = searchedWord!.results?[indexPath.row]
             newWord.description = result?.definition
             newWord.partOfSpeech = result?.partOfSpeech
             newWord.example = result?.examples?[0]
@@ -253,7 +260,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             if selectedDictionary.words != nil {
                 
                 do {
-                    try db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id ?? "").setData(from: selectedDictionary)
+                    try db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id ?? "").setData(from: selectedDictionary, merge: true)
                     print("Dictionary updated")
                     DispatchQueue.main.async {
                         self.searchedWord = .init()
