@@ -55,7 +55,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
     
     
     @IBAction func facebookLogin(_ sender: UIButton) {
-        fbLoginManager.logIn(permissions: ["email, public_profile"], from: self) { (loginResult, error) in
+        fbLoginManager.logIn(permissions: ["email", "public_profile"], from: self) { (loginResult, error) in
             if error != nil {
                 print(error!)
             }
@@ -63,9 +63,8 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
             if let currentToken = AccessToken.current {
                 let credential = FacebookAuthProvider.credential(withAccessToken: currentToken.tokenString)
                 Auth.auth().signIn(with: credential) { (authResult, error) in
-                    if let error = error {
-                        let authError = error as NSError
-                        print(authError)
+                    if let error = error as NSError? {
+                        print(error)
                     } else {
                         DispatchQueue.main.async {
                             self.setupTabbar()
@@ -85,7 +84,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
     }
     
     // MARK: Google Login
-    
     
     @IBAction func googleLogin(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
