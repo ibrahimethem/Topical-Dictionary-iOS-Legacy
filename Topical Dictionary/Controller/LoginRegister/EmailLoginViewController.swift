@@ -34,24 +34,29 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         fullnameTextField.delegate = self
         fullnameTextField.tag = 0
         
-        loginButton.layer.cornerRadius = 6.0
+        loginButton.layer.cornerRadius = 8.0
         
     }
     
     @IBAction func loginOrRegister(_ sender: UISegmentedControl) {
+        view.endEditing(true)
         if sender.selectedSegmentIndex == 0 {
             loginButton.setTitle("Sign in with Email", for: .normal)
             UIView.animate(withDuration: 0.4) {
                 self.fullnameTextField.isHidden = true
                 self.confirmPasswordTextField.isHidden = true
+                self.confirmPasswordTextField.isEnabled = false
                 self.terms.isHidden = true
+                self.passwordTextField.textContentType = .password
             }
         } else {
             loginButton.setTitle("Sign up with Email", for: .normal)
             UIView.animate(withDuration: 0.4) {
                 self.fullnameTextField.isHidden = false
                 self.confirmPasswordTextField.isHidden = false
+                self.confirmPasswordTextField.isEnabled = true
                 self.terms.isHidden = false
+                self.passwordTextField.textContentType = .newPassword
             }
         }
     }
@@ -93,11 +98,25 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
             }
             
         } else {
-            // TODO: Add register with email
-            // Register
+            if let password = passwordTextField.text,
+               password == confirmPasswordTextField.text,
+               let email = emailTextField.text, let name = fullnameTextField.text {
+                Auth.auth().createUser(withEmail: email, password: password) { authDataResult, error in
+                    if let err = error {
+                        print(err.localizedDescription)
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        authDataResult?.user.createProfileChangeRequest().displayName = name
+                    }
+                }
+            } else {
+                print("Passwords doesn't match")
+            }
         }
     }
     @IBAction func cancel(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
 }
