@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             cell.backgroundColor = .clear
             cell.textLabel?.textAlignment = .center
-            cell.textLabel?.textColor = .white
+            cell.textLabel?.textColor = UIColor(named: "myTextColor")
             cell.textLabel?.text = "\(numberOfSelectedRows?.count ?? 0) dictionaries selected"
             
             return cell
