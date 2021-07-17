@@ -108,6 +108,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         searchedWord = nil
         wordsTableView.reloadSections(IndexSet(arrayLiteral: sections.searchedWords.rawValue), with: .fade)
         wordManager.fetchData(word: searchBar.text ?? "")
+        searchBar.endEditing(true)
     }
     
     // word delegate method
@@ -191,6 +192,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         case sections.search.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchWordCell") as! SearchWordCell
             cell.seachBar.delegate = self
+            if searchedWord == nil {
+                cell.seachBar.text = ""
+            }
             
             return cell
             
@@ -243,7 +247,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == sections.searchedWords.rawValue {
-            self.wordsTableView.reloadSections(IndexSet(arrayLiteral: 1), with: .fade)
+            tableView.reloadSections(IndexSet(arrayLiteral: sections.searchedWords.rawValue), with: .fade)
             var newWord = WordModel()
             guard searchedWord != nil else { return }
             newWord.word = searchedWord!.word
@@ -258,16 +262,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                 selectedDictionary.words?.append(newWord)
             }
             
-            searchedWord = .init()
-            wordsTableView.reloadData()
-            
             if selectedDictionary.words != nil {
-                
                 do {
                     try db.collection(Keys.dictionaryCollectionID.rawValue).document(selectedDictionary.id ?? "").setData(from: selectedDictionary, merge: true)
                     print("Dictionary updated")
                     DispatchQueue.main.async {
-                        self.searchedWord = .init()
+                        self.searchedWord = nil
                         self.wordsTableView.reloadData()
                     }
                 } catch {
