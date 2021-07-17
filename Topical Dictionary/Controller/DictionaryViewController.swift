@@ -252,7 +252,11 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             newWord.partOfSpeech = result?.partOfSpeech
             newWord.example = result?.examples?[0]
             
-            selectedDictionary.words?.append(newWord)
+            if selectedDictionary.words == nil {
+                selectedDictionary.words = [newWord]
+            } else {
+                selectedDictionary.words?.append(newWord)
+            }
             
             searchedWord = .init()
             wordsTableView.reloadData()
