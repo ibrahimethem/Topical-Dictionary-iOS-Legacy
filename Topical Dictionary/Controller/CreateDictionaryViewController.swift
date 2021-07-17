@@ -116,6 +116,7 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     func doneAction() {
         self.view.endEditing(true)
         thisDictionary.creator = Auth.auth().currentUser?.uid
+        thisDictionary.date = Timestamp()
         
         do {
             let ref = try db.collection(Keys.dictionaryCollectionID.rawValue).addDocument(from: thisDictionary)
