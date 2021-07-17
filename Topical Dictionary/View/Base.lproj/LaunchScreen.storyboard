@@ -25,7 +25,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="HomeBackgroundColor"/>
+                        <color key="backgroundColor" name="GeneralBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4hu-Ip-MvX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="H7q-wh-Q7T"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4hu-Ip-MvX" secondAttribute="trailing" constant="40" id="pi4-t7-lFA"/>
@@ -40,8 +40,8 @@
     </scenes>
     <resources>
         <image name="AppLogo" width="428.66665649414062" height="350"/>
-        <namedColor name="HomeBackgroundColor">
-            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="GeneralBackgroundColor">
+            <color red="0.30196078431372547" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

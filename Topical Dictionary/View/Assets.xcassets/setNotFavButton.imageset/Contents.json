@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "favoriteButton.png",
+      "filename" : "setNotFavButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "favoriteButton-dark.png",
+      "filename" : "setNotFavButton-dark.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "favoriteButton@2x.png",
+      "filename" : "setNotFavButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "favoriteButton-dark@2x.png",
+      "filename" : "setNotFavButton-dark@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "favoriteButton@3x.png",
+      "filename" : "setNotFavButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "favoriteButton-dark@3x.png",
+      "filename" : "setNotFavButton-dark@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -52,8 +52,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

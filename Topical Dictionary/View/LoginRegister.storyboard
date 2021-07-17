@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gwY-Te-VdN">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gwY-Te-VdN">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -59,11 +59,11 @@
                                                                     <constraint firstAttribute="height" constant="44" id="bYT-vd-rRx"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                                                <color key="tintColor" red="0.30588235289999999" green="0.29411764709999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="tintColor" name="DictionaryCellTextColor"/>
                                                                 <inset key="titleEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="9" maxY="0.0"/>
                                                                 <state key="normal" title="Continue with Apple" image="apple-logo">
-                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="titleColor" name="DictionaryCellTextColor"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="appleLogin:" destination="gwY-Te-VdN" eventType="touchUpInside" id="Vhg-7j-5tb"/>
@@ -77,7 +77,7 @@
                                                                 <inset key="titleEdgeInsets" minX="9" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="9" maxY="0.0"/>
                                                                 <state key="normal" title="Continue with Google" image="google-logo">
-                                                                    <color key="titleColor" systemColor="darkTextColor"/>
+                                                                    <color key="titleColor" name="DictionaryCellTextColor"/>
                                                                 </state>
                                                                 <connections>
                                                                     <action selector="googleLogin:" destination="gwY-Te-VdN" eventType="touchUpInside" id="1wW-D5-eAl"/>
@@ -167,7 +167,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="R9x-Uh-BRz"/>
-                        <color key="backgroundColor" name="HomeBackgroundColor"/>
+                        <color key="backgroundColor" name="GeneralBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZR1-7v-6CJ" firstAttribute="top" secondItem="R9x-Uh-BRz" secondAttribute="top" id="507-Bx-MMl"/>
                             <constraint firstItem="ZR1-7v-6CJ" firstAttribute="leading" secondItem="R9x-Uh-BRz" secondAttribute="leading" id="7LP-Y3-dhd"/>
@@ -205,6 +205,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="GnV-8E-kHW"/>
                                         </constraints>
+                                        <color key="tintColor" name="tabbarItemColor"/>
                                         <state key="normal" image="cancelButton"/>
                                         <connections>
                                             <action selector="cancel:" destination="AmC-be-JyG" eventType="touchUpInside" id="fiT-bX-dJF"/>
@@ -213,7 +214,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue with Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezt-TG-rJn">
                                         <rect key="frame" x="120" y="0.0" width="154" height="44"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" name="tabbarItemColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUK-YY-zNu">
@@ -253,7 +254,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
                                                 <color key="backgroundColor" name="DictionaryCellColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="continue" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="continue" textContentType="name"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-cy-BQl">
                                                 <rect key="frame" x="0.0" y="53" width="334" height="40"/>
@@ -262,19 +263,19 @@
                                                     <constraint firstAttribute="height" constant="40" id="mlg-cD-i9h"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue" textContentType="email"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue" textContentType="username"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IXQ-46-1TH">
                                                 <rect key="frame" x="0.0" y="106" width="334" height="40"/>
                                                 <color key="backgroundColor" name="DictionaryCellColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czS-T8-D7R">
                                                 <rect key="frame" x="0.0" y="159" width="334" height="40"/>
                                                 <color key="backgroundColor" name="DictionaryCellColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -335,11 +336,17 @@
         <namedColor name="DictionaryCellColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="HomeBackgroundColor">
-            <color red="0.30199998617172241" green="0.28200000524520874" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="DictionaryCellTextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="GeneralBackgroundColor">
+            <color red="0.30196078431372547" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HomeBackgroundColor">
+            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabbarItemColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
