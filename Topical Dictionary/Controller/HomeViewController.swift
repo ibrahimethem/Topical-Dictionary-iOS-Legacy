@@ -227,7 +227,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryCell", for: indexPath) as! DictionaryTableViewCell
-            cell.dictionary = tableData[indexPath.row]
+            cell.setDictionary(to: tableData[indexPath.row])
             
             return cell
             
@@ -266,13 +266,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 0 {
-            return nil
+                    return nil
         }
         
-        let fav = UITableViewRowAction(style: .default, title: "Favorite") { (action, indexPath) in
+        let fav = UIContextualAction(style: .normal, title: nil) { action, _, completion in
             let favOrNot = self.tableData[indexPath.row].isFavorite ?? false
             let setTo = !favOrNot
             let dictionaryID = self.tableData[indexPath.row].id!
@@ -287,9 +288,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             })
         }
-        fav.backgroundColor = UIColor(red: 253/255, green: 242/255, blue: 130/255, alpha: 1.0)
         
-        return [fav]
+        fav.backgroundColor = tableView.backgroundColor
+        
+        if self.tableData[indexPath.row].isFavorite ?? false {
+            fav.image = UIImage(named: "setNotFavButton")
+        } else {
+            fav.image = UIImage(named: "setFavButton")
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [fav])
+        
+        return config
+        
     }
     
     // MARK: - NAVIGATION
