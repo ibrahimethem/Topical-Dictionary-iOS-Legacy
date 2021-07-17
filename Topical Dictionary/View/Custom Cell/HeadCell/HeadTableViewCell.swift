@@ -18,8 +18,8 @@ class HeadTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegat
     var initialTitleText = ""
     var initialExplanationText = ""
     
-    let placeholderFont = UIFont.init(name: "Roboto-LightItalic", size: 14.0)!
-    let explanationFont = UIFont.init(name: "Roboto-Light", size: 14.0)!
+    let placeholderFont = UIFont.init(name: "Roboto-Italic", size: 14.0)!
+    let explanationFont = UIFont.init(name: "Roboto-Regular", size: 14.0)!
     
     weak var delegate: HeadCellDelegate?
     

@@ -11,11 +11,11 @@
         <array key="Raleway-Medium.ttf">
             <string>Raleway-Medium</string>
         </array>
-        <array key="Roboto-Light.ttf">
-            <string>Roboto-Light</string>
-        </array>
         <array key="Roboto-MediumItalic.ttf">
             <string>Roboto-MediumItalic</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -29,7 +29,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPP-wh-jkq">
-                        <rect key="frame" x="20" y="6" width="42.5" height="22"/>
+                        <rect key="frame" x="20" y="6" width="46.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="x13-hV-aKj"/>
                         </constraints>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Part of Speach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdD-c3-92F">
-                        <rect key="frame" x="70.5" y="6" width="87" height="22"/>
+                        <rect key="frame" x="74.5" y="6" width="84.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Q6D-rU-Siv"/>
                         </constraints>
@@ -51,7 +51,7 @@
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="FKB-8W-RVv"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

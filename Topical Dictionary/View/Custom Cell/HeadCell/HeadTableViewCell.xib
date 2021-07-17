@@ -11,8 +11,8 @@
         <array key="Raleway-SemiBold.ttf">
             <string>Raleway-SemiBold</string>
         </array>
-        <array key="Roboto-Light.ttf">
-            <string>Roboto-Light</string>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -39,7 +39,7 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dGn-cG-lzg"/>
                         </constraints>
                         <color key="textColor" name="DictionaryCellDateColor"/>
-                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <variation key="heightClass=compact-widthClass=compact" hidden="NO"/>
                     </textView>

@@ -16,31 +16,29 @@ class DictionaryTableViewCell: UITableViewCell {
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet weak var selectionView: UIView!
     
-    var dictionary: DictionaryModel! {
-        didSet {
-            if let fav = dictionary.isFavorite {
-                if fav {
-                    dictionaryIcon.image = UIImage(named: "100percent")
-                } else {
-                    dictionaryIcon.image = UIImage()
-                }
+    func setDictionary(to dictionaryModel: DictionaryModel) {
+        if let fav = dictionaryModel.isFavorite {
+            if fav {
+                dictionaryIcon.image = UIImage(named: "cellFavImage")
             } else {
                 dictionaryIcon.image = UIImage()
             }
-            if let timestamp = dictionary.date {
-                let date = timestamp.dateValue()
-                let formatter = DateFormatter()
-                formatter.dateStyle = .medium
-                formatter.timeStyle = .short
-                formatter.doesRelativeDateFormatting = true
-                
-                dateLabel.text = formatter.string(from: date)
-            } else {
-                dateLabel.text = "no date"
-            }
-            title.text = dictionary.topic ?? ""
-            explanation.text = dictionary.info ?? ""
+        } else {
+            dictionaryIcon.image = UIImage()
         }
+        if let timestamp = dictionaryModel.date {
+            let date = timestamp.dateValue()
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            formatter.doesRelativeDateFormatting = true
+            
+            dateLabel.text = formatter.string(from: date)
+        } else {
+            dateLabel.text = "no date"
+        }
+        title.text = dictionaryModel.topic ?? ""
+        explanation.text = dictionaryModel.info ?? ""
     }
     
     override func awakeFromNib() {
