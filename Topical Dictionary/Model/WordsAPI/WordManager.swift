@@ -34,7 +34,6 @@ class WordManager {
         request.httpMethod = "GET"
         let session = URLSession.shared
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let dataTask = session.dataTask(with: request) { [unowned self] (data, response, error) in
             if error != nil {
                 print(error!)
@@ -47,7 +46,6 @@ class WordManager {
             }
         }
         dataTask.resume()
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     func parseJSON(with data: Data) -> WordData? {
