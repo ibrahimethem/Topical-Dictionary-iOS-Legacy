@@ -277,4 +277,34 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        if indexPath.section == sections.words.rawValue {
+            
+            let remove = UIContextualAction(style: .normal, title: "Remove") { _, _, _ in
+                if let word = self.selectedDictionary.words?[indexPath.row] {
+                    print("Remove the word: \(word.word ?? "")")
+                    self.selectedDictionary.words?.remove(at: indexPath.row)
+                    do {
+                        try db.collection(Keys.dictionaryCollectionID.rawValue).document(self.selectedDictionary.id ?? "").setData(from: self.selectedDictionary, merge: true)
+                        print("Dictionary updated")
+                        DispatchQueue.main.async {
+                            self.searchedWord = nil
+                            self.wordsTableView.reloadData()
+                        }
+                    } catch {
+                        print("Error occured while updating the dictionary \(error as NSError)")
+                    }
+                } else {
+                    print("There is no word in that index")
+                }
+            }
+            remove.backgroundColor = .systemRed
+            
+            return UISwipeActionsConfiguration(actions: [remove])
+            
+        } else {
+            return nil
+        }
+    }
+    
 }
