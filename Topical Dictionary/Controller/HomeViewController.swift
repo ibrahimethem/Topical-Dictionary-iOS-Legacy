@@ -168,6 +168,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         mainTableView.reloadData()
     }
     
+    func didAddDictionary(_ dictionaryManager: DictionariesManager, dictionary: DictionaryModel) {
+        performSegue(withIdentifier: "HomeToDictionaryInstant", sender: dictionary)
+    }
+    
     private func fireBaseSettings() {
         let settings = FirestoreSettings()
         settings.isPersistenceEnabled = true
@@ -316,6 +320,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if segue.identifier == "filterSegue" {
             let destination = segue.destination as! FilterViewController
             destination.masterView = self
+        } else if segue.identifier == "HomeToDictionaryInstant" {
+            let destination = segue.destination as! DictionaryViewController
+            destination.selectedDictionary = sender as! DictionaryModel
         }
     }
 }
