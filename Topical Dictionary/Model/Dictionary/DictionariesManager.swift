@@ -53,6 +53,7 @@ class DictionariesManager {
                             guard let changedDictionary = try! change.document.data(as: DictionaryModel.self) else { return}
                             self.allDictionaries?.append(changedDictionary)
                             self.sortDictionaries(by: self.sortingType)
+                            self.delegate?.didAddDictionary(self, dictionary: changedDictionary)
                         case .removed:
                             guard let changedDictionary = try! change.document.data(as: DictionaryModel.self) else { return}
                             self.allDictionaries?.removeAll(where: { (dictionaryModel) -> Bool in
@@ -143,4 +144,5 @@ protocol DictionariesManagerDelegate: AnyObject {
     func didLoadDictionaries(_ dictionaryManager: DictionariesManager, dictionaries: [DictionaryModel])
     func didFailLoadDictionaries(_ dictionaryManager: DictionariesManager, error: Error)
     func dictionariesDidChange(_ dictionaryManager: DictionariesManager)
+    func didAddDictionary(_ dictionaryManager: DictionariesManager, dictionary: DictionaryModel)
 }
