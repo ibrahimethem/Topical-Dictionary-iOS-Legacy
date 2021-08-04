@@ -63,6 +63,7 @@ class HeadTableViewCell: UITableViewCell, UITextViewDelegate, UITextFieldDelegat
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.isScrollEnabled = true
         if textView.font == placeholderFont {
+            textView.font = explanationFont
             textView.text = ""
         } else {
             initialExplanationText = textView.text

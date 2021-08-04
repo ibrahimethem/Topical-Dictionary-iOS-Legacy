@@ -26,15 +26,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Topic" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="baR-Cg-aPR">
-                        <rect key="frame" x="15" y="12" width="453" height="32"/>
+                        <rect key="frame" x="15" y="12" width="453" height="28"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="doG-XP-Qtj"/>
+                            <constraint firstAttribute="height" constant="28" id="doG-XP-Qtj"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="21"/>
+                        <fontDescription key="fontDescription" name="Raleway-SemiBold" family="Raleway" pointSize="19"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write the explanation of your dictionary here Write the explanation of your dictionary hereWrite the explanation of" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-lW-dUM">
-                        <rect key="frame" x="15" y="49" width="458" height="51"/>
+                        <rect key="frame" x="15" y="45" width="458" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dGn-cG-lzg"/>
                         </constraints>
