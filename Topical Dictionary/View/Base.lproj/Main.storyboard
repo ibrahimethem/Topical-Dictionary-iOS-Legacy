@@ -162,6 +162,7 @@
                         <outlet property="mainTableView" destination="Cm5-94-nuJ" id="W37-Fg-qAC"/>
                         <segue destination="nYH-B3-LJi" kind="show" identifier="HomeToDictionary" id="wOH-uf-hWz"/>
                         <segue destination="739-mm-8Pe" kind="presentation" identifier="filterSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="gZY-r3-DjV"/>
+                        <segue destination="nYH-B3-LJi" kind="show" identifier="HomeToDictionaryInstant" animates="NO" id="U2O-8C-xC7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRI-0F-SqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,11 +201,45 @@
                     <connections>
                         <outlet property="favoriteButton" destination="EAJ-F3-cn2" id="vnz-8h-wP1"/>
                         <outlet property="wordsTableView" destination="sNV-C4-TIf" id="ZoG-Li-Vwy"/>
+                        <segue destination="J3j-ZQ-R2s" kind="show" identifier="WordDetailSegue" id="b8c-0o-ODP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gDs-Rs-o6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2220" y="-135.22167487684729"/>
+        </scene>
+        <!--Word Detail View Controller-->
+        <scene sceneID="ktM-hC-aQ6">
+            <objects>
+                <viewController id="J3j-ZQ-R2s" customClass="WordDetailViewController" customModule="Topical_Dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bJf-dG-8e3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gD8-rM-6At">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                <color key="backgroundColor" name="HomeBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="uV3-7b-A7d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gD8-rM-6At" firstAttribute="leading" secondItem="uV3-7b-A7d" secondAttribute="leading" id="KGn-LL-ags"/>
+                            <constraint firstItem="gD8-rM-6At" firstAttribute="trailing" secondItem="uV3-7b-A7d" secondAttribute="trailing" id="L6m-lE-rhD"/>
+                            <constraint firstItem="gD8-rM-6At" firstAttribute="bottom" secondItem="uV3-7b-A7d" secondAttribute="bottom" id="lS1-RD-1uO"/>
+                            <constraint firstItem="gD8-rM-6At" firstAttribute="top" secondItem="uV3-7b-A7d" secondAttribute="top" id="pJl-Qq-yuC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="voE-0f-GGQ">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="LQG-g6-Wb4"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="wordTableView" destination="gD8-rM-6At" id="07e-kd-aSB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="utZ-j9-MYK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3102.898550724638" y="-135.26785714285714"/>
         </scene>
         <!--Create Dictionary-->
         <scene sceneID="kE1-aN-bIb">
@@ -214,49 +249,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3HL-wQ-RaO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="3HL-wQ-RaO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <color key="backgroundColor" name="HomeBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="doneCell" textLabel="JhJ-z4-vJj" rowHeight="50" style="IBUITableViewCellStyleDefault" id="qB8-DK-7k1">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qB8-DK-7k1" id="G61-cs-FYz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Done" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JhJ-z4-vJj">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
+                                                    <color key="textColor" systemColor="systemRedColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cancelCell" textLabel="btg-pQ-bi6" rowHeight="50" style="IBUITableViewCellStyleDefault" id="D2H-Fb-Ih5">
+                                        <rect key="frame" x="0.0" y="99.5" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D2H-Fb-Ih5" id="aFf-gr-gml">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="btg-pQ-bi6">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ehh-Lb-oys">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <items>
-                                    <barButtonItem title="Done" id="obc-9e-Rjr">
-                                        <connections>
-                                            <action selector="done:" destination="K10-Iu-1i5" id="5lA-LB-IVi"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="zsF-P4-aCn"/>
-                                    <barButtonItem title="Cancel" id="CGo-tN-HTj">
-                                        <connections>
-                                            <action selector="cancel:" destination="K10-Iu-1i5" id="B0N-fk-VcE"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.3411764705882353" green="0.31764705882352939" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Xn-f8-PAO"/>
                         <color key="backgroundColor" name="GeneralBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3HL-wQ-RaO" firstAttribute="trailing" secondItem="3Xn-f8-PAO" secondAttribute="trailing" id="G6u-YA-nVB"/>
-                            <constraint firstItem="Ehh-Lb-oys" firstAttribute="top" secondItem="3Xn-f8-PAO" secondAttribute="top" id="X0k-QJ-Jgc"/>
-                            <constraint firstItem="Ehh-Lb-oys" firstAttribute="trailing" secondItem="3Xn-f8-PAO" secondAttribute="trailing" id="ae8-hP-FK6"/>
-                            <constraint firstItem="3HL-wQ-RaO" firstAttribute="top" secondItem="Ehh-Lb-oys" secondAttribute="bottom" id="fJo-w4-jar"/>
-                            <constraint firstItem="Ehh-Lb-oys" firstAttribute="leading" secondItem="3Xn-f8-PAO" secondAttribute="leading" id="kfh-n2-iJ9"/>
                             <constraint firstAttribute="bottom" secondItem="3HL-wQ-RaO" secondAttribute="bottom" id="nE5-iq-Atg"/>
                             <constraint firstItem="3HL-wQ-RaO" firstAttribute="leading" secondItem="3Xn-f8-PAO" secondAttribute="leading" id="qih-Sh-3Bx"/>
+                            <constraint firstItem="3HL-wQ-RaO" firstAttribute="top" secondItem="3Xn-f8-PAO" secondAttribute="top" id="tEy-Aq-L0X"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addDictionaryTable" destination="3HL-wQ-RaO" id="27D-tA-aFZ"/>
-                        <outlet property="toolBar" destination="Ehh-Lb-oys" id="T9M-e3-sO9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61Z-mG-NMY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1180" y="-938"/>
+            <point key="canvasLocation" x="-1181.1594202898552" y="-938.16964285714278"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Tco-f5-PRr">
@@ -535,6 +586,9 @@
             <point key="canvasLocation" x="1147.8260869565217" y="624.10714285714278"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="U2O-8C-xC7"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Account-Unselected" width="25" height="25"/>
         <image name="Add" width="26" height="26"/>
@@ -565,6 +619,9 @@
         <namedColor name="tabbarItemColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

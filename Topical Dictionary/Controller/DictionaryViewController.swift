@@ -10,7 +10,7 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-class DictionaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate {
+class DictionaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate, WordDetailViewDelegate, DictionaryServiceDelegate {
 
     enum sections: Int {
         case head = 0
@@ -98,6 +98,21 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             sender.image = UIImage(named: "notFavoriteButton")
         }
         sender.isEnabled = true
+    }
+    
+    // MARK: - Dictionary Service Delegate
+    
+    func didUpdateDictionary(_ DictionaryService: DictionaryService, dictionary: DictionaryModel) {
+        selectedDictionary = dictionary
+        wordsTableView.reloadData()
+    }
+    
+    // MARK: - Word Detail Delegate
+    
+    func didUpdateWord(word: WordModel, index: Int) {
+        let dictionaryService = DictionaryService(dictionary: selectedDictionary)
+        dictionaryService.delegate = self
+        dictionaryService.updateWord(with: word, index: index)
     }
     
     
@@ -274,6 +289,11 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
                     print("Error occured while updating the dictionary \(error as NSError)")
                 }
             }
+        } else if indexPath.section == sections.words.rawValue {
+            if let word = self.selectedDictionary.words?[indexPath.row] {
+                let wordViewModel = WordDetailViewModel(index: indexPath.row, word: word)
+                performSegue(withIdentifier: "WordDetailSegue", sender: wordViewModel)
+            }
         }
     }
     
@@ -304,6 +324,13 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
             
         } else {
             return nil
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? WordDetailViewController, let wordViewModel = sender as? WordDetailViewModel {
+            destination.delegate = self
+            destination.viewModel = wordViewModel
         }
     }
     
