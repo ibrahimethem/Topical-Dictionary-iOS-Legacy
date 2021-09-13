@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -131,7 +132,7 @@
                                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Continue with E-mail"/>
                                                                 <connections>
-                                                                    <segue destination="AmC-be-JyG" kind="presentation" id="nrq-aG-Eov"/>
+                                                                    <segue destination="MJv-fz-hUh" kind="presentation" id="nrq-aG-Eov"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
@@ -189,129 +190,126 @@
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="187.68472906403943"/>
         </scene>
-        <!--Email Login View Controller-->
+        <!--Continue with Email-->
         <scene sceneID="Ar5-g2-TDQ">
             <objects>
                 <viewController id="AmC-be-JyG" customClass="EmailLoginViewController" customModule="Topical_Dictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="by6-ov-03H">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="7by-RE-4zR">
-                                <rect key="frame" x="10" y="10" width="394" height="44"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVQ-VK-UFD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fkE-IF-sp9">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="GnV-8E-kHW"/>
-                                        </constraints>
-                                        <color key="tintColor" name="tabbarItemColor"/>
-                                        <state key="normal" image="cancelButton"/>
-                                        <connections>
-                                            <action selector="cancel:" destination="AmC-be-JyG" eventType="touchUpInside" id="fiT-bX-dJF"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue with Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezt-TG-rJn">
-                                        <rect key="frame" x="120" y="0.0" width="154" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <color key="textColor" name="tabbarItemColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUK-YY-zNu">
-                                        <rect key="frame" x="350" y="0.0" width="44" height="44"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="OqE-uF-oKk"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="oQ5-Pf-XiI"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-FP-cqn" userLabel="Login Register Stack">
-                                <rect key="frame" x="40" y="74" width="334" height="325"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RpJ-sn-YDU">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="37"/>
-                                        <color key="backgroundColor" name="DictionaryCellColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="D5s-xy-xbv"/>
-                                        </constraints>
-                                        <segments>
-                                            <segment title="Sign in"/>
-                                            <segment title="Sign up"/>
-                                        </segments>
-                                        <color key="selectedSegmentTintColor" red="0.9955433011" green="0.91806793210000004" blue="0.65087610480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <connections>
-                                            <action selector="loginOrRegister:" destination="AmC-be-JyG" eventType="valueChanged" id="tXQ-cw-6cY"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-Vz-Mf6" userLabel="Text FieldsStack View">
-                                        <rect key="frame" x="0.0" y="61" width="334" height="199"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-FP-cqn" userLabel="Login Register Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="436"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DZT-Fv-BEG">
-                                                <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
-                                                <color key="backgroundColor" name="DictionaryCellColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="continue" textContentType="name"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-cy-BQl">
-                                                <rect key="frame" x="0.0" y="53" width="334" height="40"/>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RpJ-sn-YDU">
+                                                <rect key="frame" x="32" y="40" width="350" height="37"/>
                                                 <color key="backgroundColor" name="DictionaryCellColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="mlg-cD-i9h"/>
+                                                    <constraint firstAttribute="height" constant="36" id="D5s-xy-xbv"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue" textContentType="username"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IXQ-46-1TH">
-                                                <rect key="frame" x="0.0" y="106" width="334" height="40"/>
-                                                <color key="backgroundColor" name="DictionaryCellColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czS-T8-D7R">
-                                                <rect key="frame" x="0.0" y="159" width="334" height="40"/>
-                                                <color key="backgroundColor" name="DictionaryCellColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
-                                            </textField>
+                                                <segments>
+                                                    <segment title="Sign in"/>
+                                                    <segment title="Sign up"/>
+                                                </segments>
+                                                <color key="selectedSegmentTintColor" red="0.9955433011" green="0.91806793210000004" blue="0.65087610480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <connections>
+                                                    <action selector="loginOrRegister:" destination="AmC-be-JyG" eventType="valueChanged" id="tXQ-cw-6cY"/>
+                                                </connections>
+                                            </segmentedControl>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="0Il-Vz-Mf6" userLabel="Text FieldsStack View">
+                                                <rect key="frame" x="32" y="101" width="350" height="199"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DZT-Fv-BEG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="40"/>
+                                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="namePhonePad" returnKeyType="continue" textContentType="name"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhe-cy-BQl">
+                                                        <rect key="frame" x="0.0" y="53" width="350" height="40"/>
+                                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="mlg-cD-i9h"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="continue" textContentType="username"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IXQ-46-1TH">
+                                                        <rect key="frame" x="0.0" y="106" width="350" height="40"/>
+                                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czS-T8-D7R">
+                                                        <rect key="frame" x="0.0" y="159" width="350" height="40"/>
+                                                        <color key="backgroundColor" name="DictionaryCellColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nf-1k-eDv">
+                                                <rect key="frame" x="32" y="325" width="350" height="14"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="Privacy policy">
+                                                        <attributes>
+                                                            <color key="NSColor" systemColor="labelColor"/>
+                                                            <font key="NSFont" size="12" name="Roboto-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-YJ-gyX">
+                                                <rect key="frame" x="32" y="364" width="350" height="40"/>
+                                                <color key="backgroundColor" red="0.9955433011" green="0.91806793210000004" blue="0.65087610480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="mCT-tm-TO8"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Sign up with E-mail"/>
+                                                <connections>
+                                                    <action selector="login:" destination="AmC-be-JyG" eventType="touchUpInside" id="qSf-Bh-hrY"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
+                                        <edgeInsets key="layoutMargins" top="40" left="32" bottom="32" right="32"/>
                                     </stackView>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nf-1k-eDv">
-                                        <rect key="frame" x="0.0" y="272.5" width="334" height="0.0"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-YJ-gyX">
-                                        <rect key="frame" x="0.0" y="285" width="334" height="40"/>
-                                        <color key="backgroundColor" red="0.9955433011" green="0.91806793210000004" blue="0.65087610480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="mCT-tm-TO8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Sign up with E-mail"/>
-                                        <connections>
-                                            <action selector="login:" destination="AmC-be-JyG" eventType="touchUpInside" id="qSf-Bh-hrY"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="top" secondItem="BIc-eh-RTq" secondAttribute="top" id="9G4-V5-utT"/>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="centerX" secondItem="kzQ-vJ-Vcg" secondAttribute="centerX" id="GEj-NH-Kzx"/>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="width" secondItem="kzQ-vJ-Vcg" secondAttribute="width" id="Lw3-kB-KhB"/>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="bottom" secondItem="BIc-eh-RTq" secondAttribute="bottom" id="M7Z-gw-5Co"/>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="trailing" secondItem="BIc-eh-RTq" secondAttribute="trailing" id="mwe-w6-oGC"/>
+                                    <constraint firstItem="6dT-FP-cqn" firstAttribute="leading" secondItem="BIc-eh-RTq" secondAttribute="leading" id="wFa-Dm-Zjf"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="BIc-eh-RTq"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="kzQ-vJ-Vcg"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jME-y0-UxW"/>
                         <color key="backgroundColor" name="HomeBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7by-RE-4zR" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" constant="10" id="F6l-Tb-pSI"/>
-                            <constraint firstItem="6dT-FP-cqn" firstAttribute="top" secondItem="7by-RE-4zR" secondAttribute="bottom" constant="20" id="SxK-YO-St2"/>
-                            <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="6dT-FP-cqn" secondAttribute="trailing" constant="40" id="TFQ-m3-91J"/>
-                            <constraint firstItem="7by-RE-4zR" firstAttribute="top" secondItem="jME-y0-UxW" secondAttribute="top" constant="10" id="Y3q-J5-eGC"/>
-                            <constraint firstItem="6dT-FP-cqn" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" constant="40" id="mNu-V6-Kzu"/>
-                            <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="7by-RE-4zR" secondAttribute="trailing" constant="10" id="qCl-Xn-CtX"/>
+                            <constraint firstItem="gVQ-VK-UFD" firstAttribute="leading" secondItem="jME-y0-UxW" secondAttribute="leading" id="4HR-bs-7ub"/>
+                            <constraint firstItem="jME-y0-UxW" firstAttribute="trailing" secondItem="gVQ-VK-UFD" secondAttribute="trailing" id="BnN-Zk-da3"/>
+                            <constraint firstItem="gVQ-VK-UFD" firstAttribute="top" secondItem="jME-y0-UxW" secondAttribute="top" id="CPB-lK-YIg"/>
+                            <constraint firstItem="jME-y0-UxW" firstAttribute="bottom" secondItem="gVQ-VK-UFD" secondAttribute="bottom" id="PlR-ez-WYM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Continue with Email" id="10T-mX-vE6">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="cancelButton" id="KsF-zY-DsP">
+                            <color key="tintColor" name="tabbarItemColor"/>
+                            <connections>
+                                <action selector="cancel:" destination="AmC-be-JyG" id="IQT-7y-EwD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="czS-T8-D7R" id="DZ4-f9-xKg"/>
                         <outlet property="emailTextField" destination="hhe-cy-BQl" id="wlc-WY-fnM"/>
@@ -320,9 +318,30 @@
                         <outlet property="loginOrRegisterSegment" destination="RpJ-sn-YDU" id="LSb-WH-fb3"/>
                         <outlet property="loginTextfields" destination="0Il-Vz-Mf6" id="DWo-1r-tkQ"/>
                         <outlet property="passwordTextField" destination="IXQ-46-1TH" id="f0f-Ni-Tf1"/>
+                        <outlet property="privacyPolicy" destination="9nf-1k-eDv" id="ei8-Kz-5nd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAA-jH-9FN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2471.0144927536235" y="187.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="2oq-Tb-JKv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MJv-fz-hUh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="qI6-Nd-hKL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="topbarTintColor"/>
+                        <color key="barTintColor" name="tabbarColor"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AmC-be-JyG" kind="relationship" relationship="rootViewController" id="2uz-LA-qBh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmV-1P-KmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1560.8695652173915" y="187.5"/>
         </scene>
@@ -345,8 +364,17 @@
         <namedColor name="HomeBackgroundColor">
             <color red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="tabbarColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="tabbarItemColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="topbarTintColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

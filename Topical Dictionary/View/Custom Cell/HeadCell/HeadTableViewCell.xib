@@ -18,11 +18,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeadCell" rowHeight="105" id="jJd-ph-Eba" customClass="HeadTableViewCell" customModule="Topical_Dictionary" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="483" height="105"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="HeadCell" rowHeight="120" id="jJd-ph-Eba" customClass="HeadTableViewCell" customModule="Topical_Dictionary" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="483" height="120"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jJd-ph-Eba" id="l7Y-go-aaY">
-                <rect key="frame" x="0.0" y="0.0" width="483" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="483" height="120"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Topic" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="baR-Cg-aPR">
@@ -34,7 +34,7 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write the explanation of your dictionary here Write the explanation of your dictionary hereWrite the explanation of" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-lW-dUM">
-                        <rect key="frame" x="15" y="45" width="458" height="55"/>
+                        <rect key="frame" x="15" y="45" width="458" height="63"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="dGn-cG-lzg"/>
                         </constraints>
@@ -47,7 +47,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="baR-Cg-aPR" firstAttribute="leading" secondItem="l7Y-go-aaY" secondAttribute="leading" constant="15" id="3Zy-S0-S5a"/>
-                    <constraint firstAttribute="bottom" secondItem="pZ7-lW-dUM" secondAttribute="bottom" constant="5" id="GLg-KV-1tV"/>
+                    <constraint firstAttribute="bottom" secondItem="pZ7-lW-dUM" secondAttribute="bottom" constant="12" id="GLg-KV-1tV"/>
                     <constraint firstItem="pZ7-lW-dUM" firstAttribute="leading" secondItem="l7Y-go-aaY" secondAttribute="leading" constant="15" id="Oha-vp-8Z0"/>
                     <constraint firstAttribute="trailing" secondItem="pZ7-lW-dUM" secondAttribute="trailing" constant="10" id="aza-sT-YvY"/>
                     <constraint firstItem="baR-Cg-aPR" firstAttribute="top" secondItem="l7Y-go-aaY" secondAttribute="top" constant="12" id="f1w-Dh-9Rr"/>
@@ -61,7 +61,7 @@
                 <outlet property="explanationTextView" destination="pZ7-lW-dUM" id="JEz-Gu-6qv"/>
                 <outlet property="titleTextField" destination="baR-Cg-aPR" id="foA-8B-0Kq"/>
             </connections>
-            <point key="canvasLocation" x="339.85507246376812" y="52.566964285714285"/>
+            <point key="canvasLocation" x="339.85507246376812" y="57.589285714285708"/>
         </tableViewCell>
     </objects>
     <resources>
