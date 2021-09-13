@@ -24,9 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         
-        if window != nil {
-            LoginService.shared.setSnapshot(window: window!)
+        guard window != nil  else { return }
+        LoginService.shared.setSnapshot(window: window!)
+        
+        let theme = UserDefaults.standard.integer(forKey: "theme")
+        self.window!.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme) ?? .unspecified
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("ThemeDidChange"), object: nil, queue: nil) { notification in
+            let theme = UserDefaults.standard.integer(forKey: "theme")
+            self.window!.overrideUserInterfaceStyle = UIUserInterfaceStyle(rawValue: theme) ?? .unspecified
         }
+        
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -39,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             open: url,
             sourceApplication: nil,
             annotation: [UIApplication.OpenURLOptionsKey.annotation]
-           )
+        )
     }
     
 }
