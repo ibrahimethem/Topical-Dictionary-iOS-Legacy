@@ -21,7 +21,6 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     var interstitial: GADInterstitial!
     
     @IBOutlet var addDictionaryTable: UITableView!
-    @IBOutlet var toolBar: UIToolbar!
     
     var thisDictionary = DictionaryModel()
     
@@ -45,13 +44,6 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
         } else {
             print("Ad wasn't ready")
         }
-    }
-    
-    //MARK: Toolbar Actions
-    
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        self.view.endEditing(true)
-        self.dismiss(animated: true, completion: .none)
     }
     
     func fireBaseSettings() {
@@ -90,9 +82,9 @@ class CreateDictionaryViewController: UIViewController, UITableViewDataSource, U
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 1, indexPath.row == 0 {
             doneAction()
-        } else if indexPath.section == 2 {
+        } else if indexPath.section == 1, indexPath.row == 1 {
             self.view.endEditing(true)
             self.dismiss(animated: true, completion: .none)
         }

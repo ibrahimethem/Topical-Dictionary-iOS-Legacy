@@ -73,7 +73,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     @IBAction func sortButton(_ sender: UIBarButtonItem) {
-        
         performSegue(withIdentifier: "filterSegue", sender: self)
     }
     

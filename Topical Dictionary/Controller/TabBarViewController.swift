@@ -54,7 +54,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, GADI
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
         // if middle tabbar button is pressed then return false and push the create dictionary view
         if viewController.isKind(of: EmptyButtonViewController.self) {
             performSegue(withIdentifier: "goToCreateDictionary", sender: interstitial)
@@ -72,14 +71,21 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, GADI
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToCreateDictionary" {
-            //self.tabBar.isHidden = false
             let destination = segue.destination as! CreateDictionaryViewController
             destination.interstitial = (sender as! GADInterstitial)
-        } else if segue.identifier == "toLoginRegister" {
-            let destination = segue.destination as! LoginViewController
-            destination.tabbar = self
         }
     }
     
+
+}
+
+class EmptyButtonViewController: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        tabBarController?.tabBar.isHidden = true
+    }
 
 }
