@@ -20,7 +20,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginTextfields: UIStackView!
     @IBOutlet weak var fullnameTextField: UITextField!
     
-    var terms = UILabel() // add real terms and conditions
+    @IBOutlet weak var privacyPolicy: UILabel! // add real terms and conditions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,18 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.layer.cornerRadius = 8.0
         
+        let privacyText = NSMutableAttributedString(string: "When you singned up using email, you are accepting the Topical Dictionaries' ", attributes: [.foregroundColor: UIColor.label])
+        let link = NSAttributedString(string: "Privacy Policy",
+                                      attributes: [.link: "https://topicaldictionary.ethemkarali.com/privacy.html"])
+        privacyText.append(link)
+        privacyPolicy.attributedText = privacyText
+        privacyPolicy.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPrivacyPolicy)))
+        
+    }
+    
+    @objc func didTapPrivacyPolicy() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrivacyViewController")
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func loginOrRegister(_ sender: UISegmentedControl) {
@@ -46,7 +58,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                 self.fullnameTextField.isHidden = true
                 self.confirmPasswordTextField.isHidden = true
                 self.confirmPasswordTextField.isEnabled = false
-                self.terms.isHidden = true
+                self.privacyPolicy.isHidden = true
                 self.passwordTextField.textContentType = .password
             }
         } else {
@@ -55,7 +67,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                 self.fullnameTextField.isHidden = false
                 self.confirmPasswordTextField.isHidden = false
                 self.confirmPasswordTextField.isEnabled = true
-                self.terms.isHidden = false
+                self.privacyPolicy.isHidden = false
                 self.passwordTextField.textContentType = .newPassword
             }
         }
@@ -66,7 +78,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.loginTextfields.isHidden = false
                 self.loginOrRegisterSegment.isHidden = false
-                self.terms.isHidden = false
+                self.privacyPolicy.isHidden = false
                 return
             }
         }
@@ -115,7 +127,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    @IBAction func cancel(_ sender: UIButton) {
+    @IBAction func cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
