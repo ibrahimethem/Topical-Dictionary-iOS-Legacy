@@ -13,6 +13,8 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginOrRegisterSegment: UISegmentedControl!
     
+    var myActivityIndicator: MyActivityIndicator?
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -50,6 +52,21 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    fileprivate func startLoading() {
+        if myActivityIndicator != nil {
+            myActivityIndicator?.endActivity()
+        }
+        myActivityIndicator  = view.addMyActivityIndicator()
+    }
+    
+    fileprivate func displayAlert(detail: String, title: String?) {
+        let alert = UIAlertController(title: title ?? "Warning", message: detail, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true) {
+            self.myActivityIndicator?.endActivity()
+        }
+    }
+    
     @IBAction func loginOrRegister(_ sender: UISegmentedControl) {
         view.endEditing(true)
         if sender.selectedSegmentIndex == 0 {
@@ -74,25 +91,14 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(_ sender: UIButton) {
-        if loginOrRegisterSegment.isHidden {
-            UIView.animate(withDuration: 0.3) {
-                self.loginTextfields.isHidden = false
-                self.loginOrRegisterSegment.isHidden = false
-                self.privacyPolicy.isHidden = false
-                return
-            }
-        }
-        
+        view.endEditing(true)
+        startLoading()
         if loginOrRegisterSegment.selectedSegmentIndex == 0 {
             // Login
             view.isUserInteractionEnabled = false
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, error) in
                 if error != nil {
-                    print("Error while signin: \(error!)")
-                    let alert = UIAlertController(title: "Have an issue", message: error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    
-                    self.present(alert, animated: true, completion: nil)
+                    self.displayAlert(detail: error!.localizedDescription, title: "Something Went Wrong")
                     self.view.isUserInteractionEnabled = true
                     
                     return
@@ -101,10 +107,7 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                 if let authDataRes = authDataResult {
                     print("user signed in: UID: \(authDataRes.user.uid)")
                     print("is email verified: \(authDataRes.user.isEmailVerified)")
-                    DispatchQueue.main.async {
-                        //self.setupTabbar()
-                        self.dismiss(animated: true, completion: nil)
-                    }
+                    self.myActivityIndicator?.endActivity()
                 }
                 self.view.isUserInteractionEnabled = true
             }
@@ -115,12 +118,19 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
                let email = emailTextField.text, let name = fullnameTextField.text {
                 Auth.auth().createUser(withEmail: email, password: password) { authDataResult, error in
                     if let err = error {
-                        print(err.localizedDescription)
+                        self.displayAlert(detail: err.localizedDescription, title: "Something Went Wrong")
                         return
                     }
-                    DispatchQueue.main.async {
-                        authDataResult?.user.createProfileChangeRequest().displayName = name
-                    }
+                    self.myActivityIndicator?.endActivity()
+                    let changeRequest = authDataResult?.user.createProfileChangeRequest()
+                    changeRequest?.displayName = name
+                    changeRequest?.commitChanges(completion: { error in
+                        if error != nil {
+                            print("Error while setting display name: \(error!.localizedDescription)")
+                        } else {
+                            print("success")
+                        }
+                    })
                 }
             } else {
                 print("Passwords doesn't match")

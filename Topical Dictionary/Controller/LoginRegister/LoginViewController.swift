@@ -13,11 +13,12 @@ import FBSDKCoreKit
 import GoogleSignIn
 import CryptoKit
 import AuthenticationServices
+import NVActivityIndicatorView
 
 class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDelegate {
     
     fileprivate var currentNonce: String?
-
+    fileprivate var myActivityIndicator: MyActivityIndicator?
     
     // Definitiion of the components
     @IBOutlet weak var logoHeight: NSLayoutConstraint!
@@ -62,21 +63,23 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
     @IBAction func facebookLogin(_ sender: UIButton) {
         fbLoginManager.logIn(permissions: ["email", "public_profile"], from: self) { (loginResult, error) in
             if error != nil {
-                print(error!)
+                self.displayAlert(detail: error!.localizedDescription, title: "Facebook Login")
             }
-            
             if let currentToken = AccessToken.current {
                 let credential = FacebookAuthProvider.credential(withAccessToken: currentToken.tokenString)
+                self.startLoading()
                 Auth.auth().signIn(with: credential) { (authResult, error) in
                     if let error = error as NSError? {
-                        print(error)
+                        self.myActivityIndicator?.endActivity()
+                        self.displayAlert(detail: error.localizedDescription, title: "Facebook Login")
                     } else {
                         DispatchQueue.main.async {
-                            self.setupTabbar()
-                            self.dismiss(animated: true, completion: nil)
+                            self.myActivityIndicator?.endActivity()
                         }
                     }
                 }
+            } else {
+                self.myActivityIndicator?.endActivity()
             }
         }
     }
@@ -96,22 +99,23 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        print(error as Any)
+        displayAlert(detail: error.localizedDescription, title: "Something Went Wrong")
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        print("didSignFor")
         if error != nil {
-            print(error!)
+            displayAlert(detail: error.localizedDescription, title: "Something Went Wrong")
         } else {
             guard let authentication = user.authentication else { return }
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            self.startLoading()
             Auth.auth().signIn(with: credential) { (authDataResult, error) in
                 if error != nil {
-                    print(error!)
+                    self.displayAlert(detail: error!.localizedDescription, title: "Something Went Wrong")
                     return
                 }
                 if let authResult = authDataResult {
+                    self.myActivityIndicator?.endActivity()
                     print("user logged in with: \(authResult.user.uid)")
                 }
             }
@@ -119,14 +123,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
         }
     }
     
-    // Login Helper
-    // Setting tabbar to the first index and make the tab bar apear
-    func setupTabbar() {
-        if tabbar != nil {
-            tabbar!.selectedIndex = 0
-            tabbar!.tabBar.isHidden = false
-        }
-    }
     
     // MARK: - Text Field Functions
     
@@ -135,11 +131,19 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
         view.endEditing(true)
     }
     
+    fileprivate func displayAlert(detail: String, title: String?) {
+        let alert = UIAlertController(title: title ?? "Warning", message: detail, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true) {
+            self.myActivityIndicator?.endActivity()
+        }
+    }
     
-    // MARK: - Scroll View Functions
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //view.endEditing(true)
+    fileprivate func startLoading() {
+        if myActivityIndicator != nil {
+            myActivityIndicator?.endActivity()
+        }
+        myActivityIndicator = view.addMyActivityIndicator()
     }
 
 }
@@ -228,20 +232,19 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
                                                         idToken: idTokenString,
                                                         rawNonce: nonce)
               // Sign in with Firebase.
-              Auth.auth().signIn(with: credential) { (authResult, error) in
+            self.startLoading()
+            Auth.auth().signIn(with: credential) { (authResult, error) in
                 if error != nil {
-                  print(error!.localizedDescription)
-                  return
+                    self.displayAlert(detail: error!.localizedDescription, title: "Something Went Wrong")
+                    return
                 }
+                self.myActivityIndicator?.endActivity()
                 print("User logged in via Apple login with id: \(authResult?.user.uid ?? "nil")")
-              }
             }
+        }
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        let message = error.localizedDescription
-        let alert = UIAlertController(title: "Something went wrong", message: message, preferredStyle: .alert)
-        alert.addAction(.init(title: "OK", style: .cancel, handler: { _ in alert.dismiss(animated: true, completion: nil) }))
-        self.present(alert, animated: true, completion: nil)
+        print("Error while apple login: \(error.localizedDescription)")
     }
 }
