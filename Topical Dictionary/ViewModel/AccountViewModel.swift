@@ -13,8 +13,10 @@ import FirebaseAuth
 class AccountViewModel: NSObject {
     
     var userModel: UserModel
+    var delegate: AccountViewModelDelegate
     
-    override init() {
+    init(delegate: AccountViewModelDelegate) {
+        self.delegate = delegate
         let currentUser = Auth.auth().currentUser
         let loginMethod = { () -> AuthProvider? in
             let providerID = currentUser?.providerData.first?.providerID
@@ -39,6 +41,21 @@ class AccountViewModel: NSObject {
         super.init()
     }
     
+    func updateDisplayName(with text: String) {
+        let change = Auth.auth().currentUser?.createProfileChangeRequest()
+        change?.displayName = text
+        change?.commitChanges(completion: { error in
+            if let err = error {
+                self.delegate.didErrorOccured(self, error: err)
+            }
+            self.userModel.fullName = text
+            self.delegate.didUpdateName(self, name: text)
+        })
+    }
     
-    
+}
+
+protocol AccountViewModelDelegate {
+    func didErrorOccured(_ viewModel: AccountViewModel, error: Error)
+    func didUpdateName(_ viewModel: AccountViewModel, name: String)
 }

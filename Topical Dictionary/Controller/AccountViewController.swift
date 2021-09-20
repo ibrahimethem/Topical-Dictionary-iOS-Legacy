@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController, AccountViewModelDelegate {
     
     @IBOutlet weak var accountTableView: UITableView!
     
@@ -18,7 +18,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = AccountViewModel()
+        viewModel = AccountViewModel(delegate: self)
         
         accountTableView.dataSource = self
         accountTableView.delegate = self
@@ -49,6 +49,22 @@ class AccountViewController: UIViewController {
             dest.viewModel = .init()
         }
     }
+    
+    
+    // MARK: - View Model Delegate
+    
+    func didErrorOccured(_ viewModel: AccountViewModel, error: Error) {
+        let alert = UIAlertController(title: "Something Went Wrong", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func didUpdateName(_ viewModel: AccountViewModel, name: String) {
+        DispatchQueue.main.async {
+            self.accountTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+        }
+    }
+    
 }
 
 extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,16 +112,33 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             if let user = viewModel?.userModel {
+                if user.loginMethod == .email {
+                    let editButton = UIButton(frame: CGRect(x: 0, y: 0, width: 23, height: 23))
+                    editButton.setImage(UIImage(named: "edit-profile"), for: .normal)
+                    editButton.addTarget(self, action: #selector(editProfile), for: .touchUpInside)
+                    
+                    cell.accessoryView = editButton
+                }
+                
                 if let name = user.fullName, let email = user.email {
                     cell.textLabel?.text = name
                     cell.detailTextLabel?.text = email
                 } else if let email = user.email {
                     cell.textLabel?.text = email
-                    cell.detailTextLabel?.text = "There is no user information"
+                    cell.detailTextLabel?.font = UIFont.init(name: "Roboto-LightItalic", size: 14.0)!
+                    if let provider = user.loginMethod?.rawValue {
+                        cell.detailTextLabel?.text = "Signed in via \(provider)"
+                    } else {
+                        cell.detailTextLabel?.text = "There is no user information"
+                    }
+                    
                 } else if let provider = user.loginMethod?.rawValue {
                     cell.detailTextLabel?.font = UIFont.init(name: "Roboto-LightItalic", size: 14.0)!
-                    cell.textLabel?.text = "Signed in using \(provider)"
-                    cell.detailTextLabel?.text = "Add your information"
+                    cell.textLabel?.text = "Signed in via \(provider)"
+                    cell.detailTextLabel?.text = "There is no user information"
+                } else {
+                    cell.textLabel?.text = "There is no user information"
+                    cell.detailTextLabel?.text = ""
                 }
             }
             
@@ -174,6 +207,21 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 0, indexPath.row == 1 {
             performSegue(withIdentifier: "ChangePasswordSegue", sender: nil)
         }
+    }
+    
+    @objc private func editProfile() {
+        let alert = UIAlertController(title: "Update Your Name", message: "Enter the name you want to set", preferredStyle: .alert)
+        alert.addTextField { textField in
+            textField.placeholder = "New Name"
+            textField.textContentType = .name
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { _ in
+            if let name = alert.textFields?.first?.text {
+                self.viewModel?.updateDisplayName(with: name)
+            }
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
 }
