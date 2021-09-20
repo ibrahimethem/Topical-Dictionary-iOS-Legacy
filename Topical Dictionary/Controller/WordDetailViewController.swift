@@ -55,6 +55,11 @@ class WordDetailViewController: UIViewController, WordManagerDelegate, UITableVi
         }
     }
     
+    @IBAction func removeWord(_ sender: UIBarButtonItem) {
+        if let word = word, let index = index {
+            delegate?.didRemoveWord(word: word, index: index)
+        }
+    }
     // MARK: - Table View Delegate
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,6 +101,7 @@ class WordDetailViewController: UIViewController, WordManagerDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
             if let wordResult = wordDescriptions?.results?[indexPath.row] {
                 word?.description = wordResult.definition
@@ -114,4 +120,5 @@ class WordDetailViewController: UIViewController, WordManagerDelegate, UITableVi
 
 protocol WordDetailViewDelegate {
     func didUpdateWord(word: WordModel, index: Int)
+    func didRemoveWord(word: WordModel, index: Int)
 }

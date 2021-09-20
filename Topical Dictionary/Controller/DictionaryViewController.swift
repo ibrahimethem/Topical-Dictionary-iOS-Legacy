@@ -25,6 +25,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     lazy var selectedDictionary = DictionaryModel()
     var searchedWord: WordData?
     lazy var wordManager = WordManager()
+    var dictionaryService: DictionaryService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,9 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         wordsTableView.dataSource = self
         
         wordManager.delegate = self
+        
+        dictionaryService = DictionaryService(dictionary: selectedDictionary, delegate: self)
+        
         
         navigationItem.largeTitleDisplayMode = .never
         
@@ -110,11 +114,12 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Word Detail Delegate
     
     func didUpdateWord(word: WordModel, index: Int) {
-        let dictionaryService = DictionaryService(dictionary: selectedDictionary)
-        dictionaryService.delegate = self
-        dictionaryService.updateWord(with: word, index: index)
+        dictionaryService?.updateWord(with: word, index: index)
     }
     
+    func didRemoveWord(word: WordModel, index: Int) {
+        dictionaryService?.deleteWord(index: index)
+    }
     
     // MARK: - Searching Functions
     
@@ -261,6 +266,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == sections.searchedWords.rawValue {
             tableView.reloadSections(IndexSet(arrayLiteral: sections.searchedWords.rawValue), with: .fade)
             var newWord = WordModel()
@@ -301,22 +307,7 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         if indexPath.section == sections.words.rawValue {
             
             let remove = UIContextualAction(style: .normal, title: "Remove") { _, _, _ in
-                if let word = self.selectedDictionary.words?[indexPath.row] {
-                    print("Remove the word: \(word.word ?? "")")
-                    self.selectedDictionary.words?.remove(at: indexPath.row)
-                    do {
-                        try db.collection(Keys.dictionaryCollectionID.rawValue).document(self.selectedDictionary.id ?? "").setData(from: self.selectedDictionary, merge: true)
-                        print("Dictionary updated")
-                        DispatchQueue.main.async {
-                            self.searchedWord = nil
-                            self.wordsTableView.reloadData()
-                        }
-                    } catch {
-                        print("Error occured while updating the dictionary \(error as NSError)")
-                    }
-                } else {
-                    print("There is no word in that index")
-                }
+                self.dictionaryService?.deleteWord(index: indexPath.row)
             }
             remove.backgroundColor = .systemRed
             
