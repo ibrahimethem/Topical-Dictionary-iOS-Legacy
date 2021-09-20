@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -202,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="786"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="6dT-FP-cqn" userLabel="Login Register Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="436"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="452.5"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="RpJ-sn-YDU">
                                                 <rect key="frame" x="32" y="40" width="350" height="37"/>
@@ -251,21 +250,22 @@
                                                     </textField>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nf-1k-eDv">
-                                                <rect key="frame" x="32" y="325" width="350" height="14"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7Q-xC-Gdl">
+                                                <rect key="frame" x="32" y="325" width="350" height="30.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="Privacy policy">
+                                                    <fragment content="Privacy Policy">
                                                         <attributes>
-                                                            <color key="NSColor" systemColor="labelColor"/>
+                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                             <font key="NSFont" size="12" name="Roboto-Regular"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOu-YJ-gyX">
-                                                <rect key="frame" x="32" y="364" width="350" height="40"/>
+                                                <rect key="frame" x="32" y="380.5" width="350" height="40"/>
                                                 <color key="backgroundColor" red="0.9955433011" green="0.91806793210000004" blue="0.65087610480000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="mCT-tm-TO8"/>
@@ -318,7 +318,7 @@
                         <outlet property="loginOrRegisterSegment" destination="RpJ-sn-YDU" id="LSb-WH-fb3"/>
                         <outlet property="loginTextfields" destination="0Il-Vz-Mf6" id="DWo-1r-tkQ"/>
                         <outlet property="passwordTextField" destination="IXQ-46-1TH" id="f0f-Ni-Tf1"/>
-                        <outlet property="privacyPolicy" destination="9nf-1k-eDv" id="ei8-Kz-5nd"/>
+                        <outlet property="privacyPolicy" destination="e7Q-xC-Gdl" id="v5M-Dm-671"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GAA-jH-9FN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -373,8 +373,5 @@
         <namedColor name="topbarTintColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

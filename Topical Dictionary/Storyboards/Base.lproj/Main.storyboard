@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pSK-uU-aC4">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -233,7 +233,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="voE-0f-GGQ">
-                        <barButtonItem key="rightBarButtonItem" title="Delete" id="LQG-g6-Wb4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="LQG-g6-Wb4">
+                            <connections>
+                                <action selector="removeWord:" destination="J3j-ZQ-R2s" id="TeR-uC-NE8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="wordTableView" destination="gD8-rM-6At" id="07e-kd-aSB"/>
@@ -348,6 +352,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="DictionaryCellColor"/>
+                                        <color key="tintColor" name="DictionaryCellTextColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChangePasswordCell" textLabel="Neu-ja-ssS" rowHeight="55" style="IBUITableViewCellStyleDefault" id="pbU-PQ-78Z">
                                         <rect key="frame" x="20" y="124.5" width="374" height="55"/>
@@ -532,6 +537,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CWL-kn-hGA">
                                                     <rect key="frame" x="333" y="0.0" width="52" height="33"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="deviceDefaultSwitch" label="deviceDefaultSwitch">
+                                                        <bool key="isElement" value="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="ag5-oP-V1V"/>
                                                     </constraints>
@@ -563,6 +571,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                             <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="DictionaryCellColor"/>
+                                <color key="tintColor" name="myTextColor"/>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RemoveAccountCell" textLabel="L3C-Cd-0rN" rowHeight="53" style="IBUITableViewCellStyleDefault" id="KqN-Id-9HW" customClass="DefaultCell" customModule="Topical_Dictionary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="155.5" width="414" height="53"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KqN-Id-9HW" id="FbS-vK-BXO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Remove Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L3C-Cd-0rN">
+                                            <rect key="frame" x="20" y="0.0" width="374" height="53"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                            <color key="textColor" systemColor="systemRedColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -698,6 +725,9 @@
                     <navigationItem key="navigationItem" id="3th-nC-Mlc">
                         <barButtonItem key="rightBarButtonItem" title="Forgot Password?" id="rZE-9y-E2T">
                             <color key="tintColor" name="topbarTintColor"/>
+                            <connections>
+                                <action selector="forgotPassword:" destination="9Rz-Hp-92h" id="DCv-cK-uqY"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -785,33 +815,14 @@
             </objects>
             <point key="canvasLocation" x="3103" y="1418"/>
         </scene>
-        <!--Empty Button View Controller-->
+        <!--View Controller-->
         <scene sceneID="k24-Wr-sAL">
             <objects>
-                <viewController id="TNU-OY-gJX" customClass="EmptyButtonViewController" customModule="Topical_Dictionary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmptyButtonViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TNU-OY-gJX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oEx-iO-oiP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="td-logo-no-bg" translatesAutoresizingMaskIntoConstraints="NO" id="4FS-3W-E0j">
-                                <rect key="frame" x="40" y="206.5" width="334" height="400"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="400" id="NMm-6r-8RP"/>
-                                </constraints>
-                            </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="550-nr-v2G">
-                                <rect key="frame" x="188.5" y="149.5" width="37" height="37"/>
-                            </activityIndicatorView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zgr-Ud-nw6"/>
-                        <color key="backgroundColor" name="GeneralBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="4FS-3W-E0j" firstAttribute="leading" secondItem="zgr-Ud-nw6" secondAttribute="leading" constant="40" id="HW2-yK-Z4u"/>
-                            <constraint firstItem="4FS-3W-E0j" firstAttribute="centerY" secondItem="oEx-iO-oiP" secondAttribute="centerY" id="bLh-48-2dn"/>
-                            <constraint firstItem="550-nr-v2G" firstAttribute="centerX" secondItem="oEx-iO-oiP" secondAttribute="centerX" id="h1O-rR-tbg"/>
-                            <constraint firstItem="zgr-Ud-nw6" firstAttribute="trailing" secondItem="4FS-3W-E0j" secondAttribute="trailing" constant="40" id="s5P-0y-VYP"/>
-                            <constraint firstItem="4FS-3W-E0j" firstAttribute="top" secondItem="550-nr-v2G" secondAttribute="bottom" constant="20" id="xXF-fg-TZ5"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Add" selectedImage="Add" id="IZo-78-wq6"/>
                 </viewController>
@@ -896,9 +907,9 @@
         <segue reference="U2O-8C-xC7"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Account-Unselected" width="25" height="25"/>
+        <image name="Account-Unselected" width="26" height="25"/>
         <image name="Add" width="26" height="26"/>
-        <image name="account" width="23" height="23"/>
+        <image name="account" width="26" height="25"/>
         <image name="cancelButton" width="20.5" height="20.5"/>
         <image name="doneButton" width="21.5" height="22.5"/>
         <image name="help" width="22" height="22"/>
@@ -907,12 +918,14 @@
         <image name="notFavoriteButton" width="23.5" height="23.5"/>
         <image name="settings" width="23" height="19.5"/>
         <image name="sortButton" width="25" height="24.5"/>
-        <image name="td-logo-no-bg" width="429" height="350"/>
         <image name="terms-and-conditions" width="22" height="24.5"/>
         <image name="words" width="25" height="25"/>
         <image name="words_unselected" width="23.5" height="23.5"/>
         <namedColor name="DictionaryCellColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DictionaryCellTextColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="GeneralBackgroundColor">
             <color red="0.30196078431372547" green="0.27843137254901962" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
