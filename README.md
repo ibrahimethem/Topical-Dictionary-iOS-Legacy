@@ -4,6 +4,8 @@
 * Deployment target is iOS 12 and later.
 * Firebase Auth, Firestore, Analytics, and other technologies are used for backend.
 
+<a href="https://apps.apple.com/us/app/topical-dictionary/id1572105333?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1632268800&h=cba99a6b9f9e71e9a5970d7c3eb24190" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
+
 ### Screenshots
 <div>
   <img src="https://user-images.githubusercontent.com/24485041/114324917-b2301680-9b35-11eb-87aa-6b8c0be4c04d.png" width="260px">
