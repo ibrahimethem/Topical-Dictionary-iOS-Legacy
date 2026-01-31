@@ -15,7 +15,7 @@ import CryptoKit
 import AuthenticationServices
 import NVActivityIndicatorView
 
-class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDelegate {
+class LoginViewController: BaseViewController, UIScrollViewDelegate, GIDSignInDelegate {
     
     fileprivate var currentNonce: String?
     fileprivate var myActivityIndicator: MyActivityIndicator?
@@ -29,7 +29,9 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var appleButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
-    
+
+    var viewModel: LoginViewModel?
+
     let fbLoginManager = LoginManager()
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -55,6 +57,11 @@ class LoginViewController: UIViewController, UIScrollViewDelegate, GIDSignInDele
         
         GIDSignIn.sharedInstance()?.delegate = self
         
+    }
+
+    override func configureViewModel() {
+        viewModel = LoginViewModel()
+        baseViewModel = viewModel
     }
     
     // MARK: Facebook login

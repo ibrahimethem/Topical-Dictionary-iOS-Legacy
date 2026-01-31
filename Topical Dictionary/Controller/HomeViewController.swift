@@ -19,13 +19,15 @@ enum SortingType {
     case zToA
 }
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DictionariesManagerDelegate {
+class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DictionariesManagerDelegate {
     
     // MARK: Implementations
     var db: Firestore!
     
     @IBOutlet var mainTableView: UITableView!
     @IBOutlet var favButton: UIBarButtonItem!
+
+    var viewModel: HomeViewModel?
     
     private var isFav = false
     private var stockRightBarItems: [UIBarButtonItem]?
@@ -67,6 +69,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.navigationBar.prefersLargeTitles = true
         
         dictionaryManager.setListener()
+    }
+
+    override func configureViewModel() {
+        viewModel = HomeViewModel()
+        baseViewModel = viewModel
     }
     
     // MARK: - Bar Button Actions

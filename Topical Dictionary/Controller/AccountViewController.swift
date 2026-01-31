@@ -9,28 +9,31 @@
 import UIKit
 import FirebaseAuth
 
-class AccountViewController: UIViewController, AccountViewModelDelegate {
+class AccountViewController: BaseViewController, AccountViewModelDelegate {
     
     @IBOutlet weak var accountTableView: UITableView!
     
     var viewModel: AccountViewModel?
+    private let authService = AuthService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        viewModel = AccountViewModel(delegate: self)
         
         accountTableView.dataSource = self
         accountTableView.delegate = self
         
     }
-    
+
+    override func configureViewModel() {
+        viewModel = AccountViewModel(delegate: self)
+        baseViewModel = viewModel
+    }
+
     func logout() {
         let alert = UIAlertController(title: "Loging out", message: "You are currently logging out. Do you want to continue?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Logout", style: .cancel, handler: { _ in
-            let auth = Auth.auth()
             do {
-                try auth.signOut()
+                try authService.signOut()
             } catch let signoutError as NSError {
                 print("Error while signing out: \(signoutError)")
             }
@@ -52,12 +55,6 @@ class AccountViewController: UIViewController, AccountViewModelDelegate {
     
     
     // MARK: - View Model Delegate
-    
-    func didErrorOccured(_ viewModel: AccountViewModel, error: Error) {
-        let alert = UIAlertController(title: "Something Went Wrong", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
     
     func didUpdateName(_ viewModel: AccountViewModel, name: String) {
         DispatchQueue.main.async {

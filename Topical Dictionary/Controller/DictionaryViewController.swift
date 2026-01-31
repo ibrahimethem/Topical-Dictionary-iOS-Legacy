@@ -10,7 +10,7 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 
-class DictionaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate, WordDetailViewDelegate, DictionaryServiceDelegate {
+class DictionaryViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, WordManagerDelegate, HeadCellDelegate, WordDetailViewDelegate, DictionaryServiceDelegate {
 
     enum sections: Int {
         case head = 0
@@ -21,6 +21,8 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet var wordsTableView: UITableView!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+
+    var viewModel: DictionaryViewModel?
     
     lazy var selectedDictionary = DictionaryModel()
     var searchedWord: WordData?
@@ -52,6 +54,11 @@ class DictionaryViewController: UIViewController, UITableViewDelegate, UITableVi
         let isFavorite = selectedDictionary.isFavorite ?? false
         setFavoriteImage(isFavorite, favoriteButton)
         
+    }
+
+    override func configureViewModel() {
+        viewModel = DictionaryViewModel()
+        baseViewModel = viewModel
     }
     
     private func fireBaseSettings() {
