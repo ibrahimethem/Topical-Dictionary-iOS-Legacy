@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
 
-class EmailLoginViewController: UIViewController, UITextFieldDelegate {
+class EmailLoginViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var loginOrRegisterSegment: UISegmentedControl!
     
@@ -23,6 +22,8 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullnameTextField: UITextField!
     
     @IBOutlet weak var privacyPolicy: UILabel! // add real terms and conditions
+
+    var viewModel: EmailLoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,11 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         privacyPolicy.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPrivacyPolicy)))
         
     }
+
+    override func configureViewModel() {
+        viewModel = EmailLoginViewModel()
+        baseViewModel = viewModel
+    }
     
     @objc func didTapPrivacyPolicy() {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PrivacyViewController")
@@ -65,6 +71,12 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         present(alert, animated: true) {
             self.myActivityIndicator?.endActivity()
         }
+    }
+
+    override func didReceiveError(_ error: Error) {
+        myActivityIndicator?.endActivity()
+        view.isUserInteractionEnabled = true
+        super.didReceiveError(error)
     }
     
     @IBAction func loginOrRegister(_ sender: UISegmentedControl) {
@@ -96,19 +108,12 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
         if loginOrRegisterSegment.selectedSegmentIndex == 0 {
             // Login
             view.isUserInteractionEnabled = false
-            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, error) in
-                if error != nil {
-                    self.displayAlert(detail: error!.localizedDescription, title: "Something Went Wrong")
-                    self.view.isUserInteractionEnabled = true
-                    
-                    return
-                }
-                
+            viewModel?.login(email: emailTextField.text ?? "", password: passwordTextField.text ?? "") { authDataResult in
                 if let authDataRes = authDataResult {
                     print("user signed in: UID: \(authDataRes.user.uid)")
                     print("is email verified: \(authDataRes.user.isEmailVerified)")
-                    self.myActivityIndicator?.endActivity()
                 }
+                self.myActivityIndicator?.endActivity()
                 self.view.isUserInteractionEnabled = true
             }
             
@@ -116,21 +121,11 @@ class EmailLoginViewController: UIViewController, UITextFieldDelegate {
             if let password = passwordTextField.text,
                password == confirmPasswordTextField.text,
                let email = emailTextField.text, let name = fullnameTextField.text {
-                Auth.auth().createUser(withEmail: email, password: password) { authDataResult, error in
-                    if let err = error {
-                        self.displayAlert(detail: err.localizedDescription, title: "Something Went Wrong")
-                        return
+                viewModel?.register(email: email, password: password, displayName: name) { authDataResult in
+                    if let authDataRes = authDataResult {
+                        print("user signed up: UID: \(authDataRes.user.uid)")
                     }
                     self.myActivityIndicator?.endActivity()
-                    let changeRequest = authDataResult?.user.createProfileChangeRequest()
-                    changeRequest?.displayName = name
-                    changeRequest?.commitChanges(completion: { error in
-                        if error != nil {
-                            print("Error while setting display name: \(error!.localizedDescription)")
-                        } else {
-                            print("success")
-                        }
-                    })
                 }
             } else {
                 print("Passwords doesn't match")

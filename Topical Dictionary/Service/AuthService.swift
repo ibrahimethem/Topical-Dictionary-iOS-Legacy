@@ -45,6 +45,26 @@ final class AuthService {
         try auth.signOut()
     }
 
+    func signIn(email: String, password: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        auth.signIn(withEmail: email, password: password, completion: completion)
+    }
+
+    func register(email: String, password: String, displayName: String, completion: @escaping (AuthDataResult?, Error?) -> Void) {
+        auth.createUser(withEmail: email, password: password) { authDataResult, error in
+            if let error = error {
+                completion(authDataResult, error)
+                return
+            }
+            guard let _ = authDataResult?.user else {
+                completion(authDataResult, AuthServiceError.missingUser)
+                return
+            }
+            self.updateDisplayName(displayName) { updateError in
+                completion(authDataResult, updateError)
+            }
+        }
+    }
+
     func updateDisplayName(_ name: String, completion: @escaping (Error?) -> Void) {
         guard let change = auth.currentUser?.createProfileChangeRequest() else {
             completion(AuthServiceError.missingUser)
