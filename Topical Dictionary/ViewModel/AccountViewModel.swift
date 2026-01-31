@@ -10,13 +10,13 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
-class AccountViewModel: NSObject {
+class AccountViewModel: BaseViewModel {
     
     var userModel: UserModel
-    var delegate: AccountViewModelDelegate
+    var accountDelegate: AccountViewModelDelegate
     
     init(delegate: AccountViewModelDelegate) {
-        self.delegate = delegate
+        self.accountDelegate = delegate
         let currentUser = Auth.auth().currentUser
         let loginMethod = { () -> AuthProvider? in
             let providerID = currentUser?.providerData.first?.providerID
@@ -46,16 +46,15 @@ class AccountViewModel: NSObject {
         change?.displayName = text
         change?.commitChanges(completion: { error in
             if let err = error {
-                self.delegate.didErrorOccured(self, error: err)
+                self.delegate?.didReceiveError(err)
             }
             self.userModel.fullName = text
-            self.delegate.didUpdateName(self, name: text)
+            self.accountDelegate.didUpdateName(self, name: text)
         })
     }
     
 }
 
 protocol AccountViewModelDelegate {
-    func didErrorOccured(_ viewModel: AccountViewModel, error: Error)
     func didUpdateName(_ viewModel: AccountViewModel, name: String)
 }
