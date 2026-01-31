@@ -14,43 +14,28 @@ class AccountViewModel: BaseViewModel {
     
     var userModel: UserModel
     var accountDelegate: AccountViewModelDelegate
+    private let authService: AuthService
     
-    init(delegate: AccountViewModelDelegate) {
+    init(delegate: AccountViewModelDelegate, authService: AuthService = .shared) {
         self.accountDelegate = delegate
-        let currentUser = Auth.auth().currentUser
-        let loginMethod = { () -> AuthProvider? in
-            let providerID = currentUser?.providerData.first?.providerID
-            switch providerID {
-            case AuthProvider.email.rawValue:
-                return AuthProvider.email
-            case AuthProvider.facebook.rawValue:
-                return AuthProvider.facebook
-            case AuthProvider.google.rawValue:
-                return AuthProvider.google
-            case AuthProvider.apple.rawValue:
-                return AuthProvider.apple
-            default:
-                return nil
-            }
-        }
+        self.authService = authService
+        let currentUser = authService.currentUser
         userModel = UserModel(userID: currentUser?.uid ?? "",
                               fullName: currentUser?.displayName,
                               email: currentUser?.email,
-                              loginMethod: loginMethod())
+                              loginMethod: authService.loginMethod(for: currentUser))
         
         super.init()
     }
     
     func updateDisplayName(with text: String) {
-        let change = Auth.auth().currentUser?.createProfileChangeRequest()
-        change?.displayName = text
-        change?.commitChanges(completion: { error in
+        authService.updateDisplayName(text) { error in
             if let err = error {
                 self.delegate?.didReceiveError(err)
             }
             self.userModel.fullName = text
             self.accountDelegate.didUpdateName(self, name: text)
-        })
+        }
     }
     
 }

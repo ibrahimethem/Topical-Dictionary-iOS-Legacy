@@ -14,6 +14,7 @@ class AccountViewController: BaseViewController, AccountViewModelDelegate {
     @IBOutlet weak var accountTableView: UITableView!
     
     var viewModel: AccountViewModel?
+    private let authService = AuthService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,8 @@ class AccountViewController: BaseViewController, AccountViewModelDelegate {
     func logout() {
         let alert = UIAlertController(title: "Loging out", message: "You are currently logging out. Do you want to continue?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Logout", style: .cancel, handler: { _ in
-            let auth = Auth.auth()
             do {
-                try auth.signOut()
+                try authService.signOut()
             } catch let signoutError as NSError {
                 print("Error while signing out: \(signoutError)")
             }
